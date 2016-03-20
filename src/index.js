@@ -10,7 +10,8 @@ require('./tags/todo/task-form.tag');
 
 // calendar component
 require('./tags/riotgear/calendar.tag');
-require('./tags/riotgear/modal.tag')
+require('./tags/riotgear/modal.tag');
+require('./tags/riotgear/bubble.tag');
 //error message
 require('./tags/shared/error-message.tag');
 

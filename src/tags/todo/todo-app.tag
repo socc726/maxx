@@ -9,6 +9,11 @@
 <task-list tasks={this.state.tasks} handlecheck={handleTaskCompletionChange}></task-list>
 
 <rg-modal hide={hideModal} modal={this.state.modal}></rg-modal>
+
+<rg-bubble bubble="{{text:'french'}}">
+	Super long
+</rg-bubble>
+
 <script>
 	var actions = require('./actions.js');
 	var sharedActions = require('../shared/actions.js');
@@ -39,8 +44,6 @@
 	hideModal(){
 		store.dispatch(riotGearActions.hideModal());
 	}
-
-
 	this.on('mount', function(){
 		store.dispatch(actions.loadTasks());
 		this.showModal();

@@ -3,42 +3,42 @@
     {
       "id": 0,
       "name": "Lesson Outline",
-      "isComplete": true
+      "isComplete": false
     },
     {
       "id": 1,
       "name": "Record video",
-      "isComplete": true
+      "isComplete": false
     },
     {
       "name": "curl sample",
       "id": 2,
-      "isComplete": true
+      "isComplete": false
     },
     {
       "name": "billiards man",
       "id": 7,
-      "isComplete": true
+      "isComplete": false
     },
     {
       "name": "belly person",
       "id": 8,
-      "isComplete": true
+      "isComplete": false
     },
     {
       "name": "frecnhman",
       "id": 9,
-      "isComplete": true
+      "isComplete": false
     },
     {
       "name": "A new guy",
       "id": 10,
-      "isComplete": true
+      "isComplete": false
     },
     {
       "name": "benno",
       "id": 11,
-      "isComplete": true
+      "isComplete": false
     }
   ]
 }
