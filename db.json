@@ -1,0 +1,44 @@
+{
+  "tasks": [
+    {
+      "id": 0,
+      "name": "Lesson Outline",
+      "isComplete": true
+    },
+    {
+      "id": 1,
+      "name": "Record video",
+      "isComplete": true
+    },
+    {
+      "name": "curl sample",
+      "id": 2,
+      "isComplete": true
+    },
+    {
+      "name": "billiards man",
+      "id": 7,
+      "isComplete": true
+    },
+    {
+      "name": "belly person",
+      "id": 8,
+      "isComplete": true
+    },
+    {
+      "name": "frecnhman",
+      "id": 9,
+      "isComplete": true
+    },
+    {
+      "name": "A new guy",
+      "id": 10,
+      "isComplete": true
+    },
+    {
+      "name": "benno",
+      "id": 11,
+      "isComplete": true
+    }
+  ]
+}
