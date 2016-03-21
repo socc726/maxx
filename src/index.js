@@ -3,6 +3,7 @@ var redux = require('redux');
 var thunk = require('redux-thunk').default;
 var reducer = require('./reducer.js');
 var blaze = require('blaze');
+require("./styles/styles.css");
 // todo component
 require('./tags/todo/todo-app.tag');
 require('./tags/todo/task-list.tag');
