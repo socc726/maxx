@@ -58,44 +58,6 @@ function openFaqPage(page){
 function openContactPage(page){
   return {type: 'OPEN_CONTACT_PAGE', data:page}
 }
-    // var r = riot.route.create();
-    // r('/', home);
-    // r('charger', charger);
-    // r('news', news);
-    // r('faq', faq);
-    // r('contact', contact);
-    // r(home);
-
-    // function home() {
-    //   self.update({
-    //     title:  "Home of the great app",
-    //     body:  "Timeline or dashboard as you like!",
-    //     isFirst: false
-    //   })
-    // }
-    // function charger() {
-    //   self.update({
-    //     title: "First feature of your app",
-    //     body: "It could be a list of something for example.",
-    //     isFirst: true
-    //   })
-    // }
-    // function news() {
-    // }
-    // function faq() {
-    //   self.update({
-    //     title: "Second feature of your app",
-    //     body: "It could be a config page for example.",
-    //     isFirst: false
-    //   })
-    // }
-    // function contact() {
-    //   self.update({
-    //     title: "Second feature of your app",
-    //     body: "It could be a config page for example.",
-    //     isFirst: false
-    //   })
-    // }
 
 
 

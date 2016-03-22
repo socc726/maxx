@@ -90,8 +90,8 @@ function createNewsPage(){
     dispatch(toggleLoading(true));
 
     var page = {
-      id: "HOME",
-      title: "Home Page",
+      id: "NEWS",
+      title: "News Page",
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
 
@@ -109,8 +109,8 @@ function createFaqPage(){
     dispatch(toggleLoading(true));
 
     var page = {
-      id: "HOME",
-      title: "Home Page",
+      id: "FAQ",
+      title: "FAQ Page",
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
 
@@ -128,8 +128,8 @@ function createContactPage(){
     dispatch(toggleLoading(true));
 
     var page = {
-      id: "HOME",
-      title: "Home Page",
+      id: "CONTACT",
+      title: "Contact Page",
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
 
