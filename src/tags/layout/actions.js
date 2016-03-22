@@ -65,6 +65,82 @@ function createHomePage(){
   }
 }
 
+function createProductsPage(){
+  return function(dispatch, action){
+
+    dispatch(toggleLoading(true));
+
+    var page = {
+      id: "PRODUCTS",
+      title: "Products Page",
+      body: "Choose from the products below:"
+    };
+
+    console.log('CREATING PRODUCTS PAGE');
+
+    dispatch(openProductsPage(page));
+
+    dispatch(toggleLoading(false));   
+  }
+}
+
+function createNewsPage(){
+  return function(dispatch, action){
+
+    dispatch(toggleLoading(true));
+
+    var page = {
+      id: "HOME",
+      title: "Home Page",
+      body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
+    };
+
+    console.log('CREATING HOMEPAGE');
+
+    dispatch(openNewsPage(page));
+
+    dispatch(toggleLoading(false));   
+  }
+}
+
+function createFaqPage(){
+  return function(dispatch, action){
+
+    dispatch(toggleLoading(true));
+
+    var page = {
+      id: "HOME",
+      title: "Home Page",
+      body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
+    };
+
+    console.log('CREATING HOMEPAGE');
+
+    dispatch(openHomePage(page));
+
+    dispatch(toggleLoading(false));   
+  }
+}
+
+function createContactPage(){
+  return function(dispatch, action){
+
+    dispatch(toggleLoading(true));
+
+    var page = {
+      id: "HOME",
+      title: "Home Page",
+      body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
+    };
+
+    console.log('CREATING HOMEPAGE');
+
+    dispatch(openHomePage(page));
+
+    dispatch(toggleLoading(false));   
+  }
+}
+
 function openHomePage(page){
   return {type: 'OPEN_HOME_PAGE', data:page}
 }

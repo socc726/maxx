@@ -44,8 +44,8 @@
 		overflow: hidden;
 		box-sizing: border-box;
 		width: 100%;
-		height: 50px;
-		line-height: 50px;
+		height: 67px;
+		line-height: 70px;
 		padding: 0 .8em;
 		color: white;
 		text-decoration: none;

@@ -52,7 +52,9 @@
       color: #000;
     }
     .maxx-logo{
-      width: 100%;
+      width: 60%;
+      display: table;
+      margin: 0 auto;
     }
     @media (min-width: 480px) {
       :scope {
