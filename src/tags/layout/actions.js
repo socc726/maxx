@@ -33,9 +33,11 @@ function createSideBar(){
 			}
 
 		];
+		
 		var sidebar = {
 			links:links
 		}
+
 
 		dispatch(sideBarCreated(sidebar));
 
@@ -51,17 +53,18 @@ function sideBarCreated(sidebar){
 
 
 
-// var r = riot.route.create();
+		// var r = riot.route.create();
 
-// r(highlightCurrent);
+		// r(highlightCurrent);
 
-// var url = location.pathname.replace(new RegExp('/', 'g'), '');
+		// var url = location.pathname.replace(new RegExp('/', 'g'), '');
 
-// function highlightCurrent(id){
-// 	if(id === url) {id = ''};
-// 	self.selectedId = id;
-// 	self.update();
-// }
+		// function highlightCurrent(id){
+		// 	if(id === url) {id = ''};
+		// 	self.selectedId = id;
+		// 	self.update();
+		// }
+
 
 
 

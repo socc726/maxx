@@ -35,12 +35,15 @@ var reduxStore = createStoreWithMiddleware(reducer);
 
 
 riot.route(function(collection,id,action){
-	console.log(collection);
 	console.log("ROUTE CHANGE" + id);
 });
 
 document.addEventListener('DOMContentLoaded', function(){
-	riot.mount('*', {store:reduxStore});
-	riot.route.base('/');
-	riot.route.start(true);
+	console.log(riot);
+	riot.compile(function(){
+		riot.mount('*', {store:reduxStore});
+		riot.route.base('/');
+		riot.route.start(true);	
+	})
+
 });

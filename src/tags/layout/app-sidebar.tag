@@ -11,7 +11,6 @@
 	store.subscribe(function(){
 		this.state = store.getState();
 		this.update();
-		console.log(this.state);
 	}.bind(this));
 
 	this.on('mount', function(){
