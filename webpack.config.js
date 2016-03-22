@@ -20,7 +20,8 @@ module.exports = {
                 exclude: /node_modules/
             },
             { test: /\.css$/, loader: "style-loader!css-loader" },
-            { test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/, loader: "url-loader?limit=30000&name=[name]-[hash].[ext]" },
+            { test: /\.(eot|woff|woff2|ttf|svg)$/, loader: "url-loader?limit=30000" },
+            { test: /\.png$/, loader: "url-loader?mimetype=image/png" },
             { test: /\.jpg$/, loader: "file-loader" }
         ]
     }

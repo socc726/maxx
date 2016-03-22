@@ -1,7 +1,11 @@
 <app-sidebar>
 
 <sidebar-item links={this.state.sidebar.links} ></sidebar-item>
-
+<br>
+<br>
+<div class="all-major-credit-cards">
+</div>
+<p class="we-accept-all-cards">We accept all major credit cards.</p>
 <script>
 	var actions = require('./actions.js');
 	var sharedActions = require('../shared/actions.js');
@@ -51,6 +55,19 @@
 	}
 	a.selected {
 		background: teal;
+	}
+	.all-major-credit-cards{
+		background: url('./src/images/all_major_credit_cards.png');
+	    height: 13%;
+	    background-size: contain;
+	    background-repeat: no-repeat;
+	    background-position: center center;
+	    margin: 0 auto;
+	    overflow: hidden;
+	}
+	.we-accept-all-cards{
+		color:white;
+		text-align: center;
 	}
 </style>
 </app-sidebar>
