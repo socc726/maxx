@@ -22,6 +22,12 @@ module.exports = function(s={tasks:[]}, a){
 			return Object.assign({}, state, {modal:{isvisible:action.data, dismissable:true}});
 		case 'SHOW_MODAL':
 			return Object.assign({}, state, {modal:{isvisible:action.data, dismissable:true}});
+		case 'SHOW_DRAWER':
+			return Object.assign({}, state, {drawer:action.data});
+		case 'CLOSE_DRAWER':
+			return Object.assign({}, state, {drawer:action.data});
+		case 'SIDEBAR_CREATED':
+			return Object.assign({}, state, {sidebar:action.data});
 		default:
 			//return current state
 			return state;

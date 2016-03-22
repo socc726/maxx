@@ -1,5 +1,6 @@
 var sharedActions = require('../shared/actions.js');
 var toggleLoading = sharedActions.toggleLoading;
+var tempErrorMessage = sharedActions.tempErrorMessage;
 
 module.exports = {
 	loadTasks: loadTasks,
@@ -22,12 +23,7 @@ function loadTasks(){
 		setTimeout(function(){
 			request.send();
 		}, 2000)
-		
 	}
-}
-
-function tasksLoaded(tasks){
-	return {type:'TASKS_LOADED', data:tasks};
 }
 
 function addTask(newTask){
@@ -46,10 +42,6 @@ function addTask(newTask){
 		var jstring = JSON.stringify({name: newTask});
 		request.send(jstring);
 	}
-}
-
-function newTaskAdded(id, name){
-	return {type:'TASK_ADDED', data: {id:id, name:name}};
 }
 
 function toggleComplete(id, isComplete){
@@ -71,6 +63,13 @@ function toggleComplete(id, isComplete){
 	}
 }
 
+function tasksLoaded(tasks){
+	return {type:'TASKS_LOADED', data:tasks};
+}
+
+function newTaskAdded(id, name){
+	return {type:'TASK_ADDED', data: {id:id, name:name}};
+}
 
 function completeChanged(id, isComplete){
 	return {

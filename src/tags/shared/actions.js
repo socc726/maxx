@@ -1,6 +1,7 @@
 module.exports = {
 	hideError: hideError,
-	toggleLoading: toggleLoading
+	toggleLoading: toggleLoading,
+	tempErrorMessage: tempErrorMessage
 }
 
 function toggleLoading(isLoading){

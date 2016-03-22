@@ -28,6 +28,8 @@
     "redux": "^3.3.1",
     "redux-thunk": "^2.0.1",
     "riot": "^2.3.17",
+    "riot-compiler": "^2.3.23",
+    "riot-router": "^0.7.3",
     "riotgear": "^3.3.1"
   }
 }

@@ -18,7 +18,7 @@
 	var actions = require('./actions.js');
 	var sharedActions = require('../shared/actions.js');
 	var riotGearActions = require('../riotgear/actions.js');
-	var store = this.opts.store;
+	var store = this._parent.opts.store;
 
 	store.subscribe(function(){
 		this.state = store.getState();
@@ -44,9 +44,17 @@
 	hideModal(){
 		store.dispatch(riotGearActions.hideModal());
 	}
+
+	openDrawer(){
+		store.dispatch(riotGearActions.openDrawer());
+	}
+
+	closeDrawer(){
+		store.dispatch(riotGearActions.closeDrawer());
+	}
+
 	this.on('mount', function(){
 		store.dispatch(actions.loadTasks());
-		this.showModal();
 	});
 </script>
 

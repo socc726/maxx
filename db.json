@@ -3,50 +3,62 @@
     {
       "id": 0,
       "name": "Lesson Outline",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "id": 1,
       "name": "Record video",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "name": "curl sample",
       "id": 2,
-      "isComplete": false
+      "isComplete": true
     },
     {
       "name": "billiards man",
       "id": 7,
-      "isComplete": false
+      "isComplete": true
     },
     {
       "name": "belly person",
       "id": 8,
-      "isComplete": false
+      "isComplete": true
     },
     {
       "name": "frecnhman",
       "id": 9,
-      "isComplete": false
+      "isComplete": true
     },
     {
       "name": "A new guy",
       "id": 10,
-      "isComplete": false
+      "isComplete": true
     },
     {
       "name": "benno",
       "id": 11,
-      "isComplete": false
+      "isComplete": true
     },
     {
       "name": "lloook out honey",
-      "id": 12
+      "id": 12,
+      "isComplete": true
     },
     {
       "name": "ohhh sweet",
-      "id": 13
+      "id": 13,
+      "isComplete": false
+    },
+    {
+      "name": "",
+      "id": 14,
+      "isComplete": true
+    },
+    {
+      "name": "",
+      "id": 15,
+      "isComplete": false
     }
   ]
 }
