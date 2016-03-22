@@ -1,6 +1,7 @@
 <app-main class="grid__cell--offset-20 grid__cell--width-80">
 
   <article>
+    <img src="./src/images/logo.jpg" class="maxx-logo" alt="">
     <h1>{ title }</h1>
     <p>{ body }</p>
     <ul if={ isFirst }>
@@ -93,12 +94,16 @@
       background: #eee;
       color: #000;
     }
+    .maxx-logo{
+      width: 100%;
+    }
     @media (min-width: 480px) {
       :scope {
         margin-right: 200px;
         margin-bottom: 0;
       }
     }
+
   </style>
 
 </app-main>

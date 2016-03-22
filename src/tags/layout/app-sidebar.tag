@@ -6,6 +6,7 @@
 <div class="all-major-credit-cards">
 </div>
 <p class="we-accept-all-cards">We accept all major credit cards.</p>
+
 <script>
 	var actions = require('./actions.js');
 	var sharedActions = require('../shared/actions.js');
@@ -64,11 +65,33 @@
 	    background-position: center center;
 	    margin: 0 auto;
 	    overflow: hidden;
+	    position:absolute;
+	    bottom: 50px;
+	    left: 0;
+	    width:100%;
+		box-sizing: border-box;
+		opacity: .5;
+		cursor: pointer;
 	}
+	.all-major-credit-cards:hover{
+		opacity: 1
+	}	
 	.we-accept-all-cards{
 		color:white;
 		text-align: center;
+		bottom:0;
+		left: 0;
+		right: 0;
+		margin:0;
+		padding: 20px 0 10px;
+	    position:absolute;
+	    text-transform: uppercase;
 	}
+    @media (min-width: 480px) {
+      .we-accept-all-cards {
+      	font-size:9px;
+      }
+    }	
 </style>
 </app-sidebar>
 
