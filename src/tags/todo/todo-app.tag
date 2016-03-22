@@ -18,7 +18,7 @@
 	var actions = require('./actions.js');
 	var sharedActions = require('../shared/actions.js');
 	var riotGearActions = require('../riotgear/actions.js');
-	var store = this._parent.opts.store;
+	var store = this._parent._parent.opts.store;
 
 	store.subscribe(function(){
 		this.state = store.getState();

@@ -2,48 +2,7 @@ var sharedActions = require('../shared/actions.js');
 var toggleLoading = sharedActions.toggleLoading;
 
 module.exports = {
-	createSideBar: createSideBar,
-	createHomePage: createHomePage
-}
-
-function createSideBar(){
-	return function(dispatch, action){
-		dispatch(toggleLoading(true));
-
-		console.log('CREATING SIDEBAR');
-		var links = [
-			{
-				name: "Home", 
-				url: ""
-			},
-			{
-				name: "CR2 Charger & Batteries",
-				url: "charger"
-			},
-			{
-				name: "News",
-				url: "news"
-			},
-			{
-				name: "FAQ",
-				url: "faq"
-			},
-			{
-				name: "Contact Us",
-				url: "contact"
-			}
-
-		];
-		
-		var sidebar = {
-			links:links
-		}
-
-
-		dispatch(sideBarCreated(sidebar));
-
-		dispatch(toggleLoading(false));		
-	}
+  createSideBar: createSideBar
 }
 
 function createHomePage(){
@@ -99,30 +58,44 @@ function openFaqPage(page){
 function openContactPage(page){
   return {type: 'OPEN_CONTACT_PAGE', data:page}
 }
-function sideBarCreated(sidebar){
-	return {type: 'SIDEBAR_CREATED', data:sidebar}
-}
+    // var r = riot.route.create();
+    // r('/', home);
+    // r('charger', charger);
+    // r('news', news);
+    // r('faq', faq);
+    // r('contact', contact);
+    // r(home);
 
-
-
-
-
-		// var r = riot.route.create();
-
-		// r(highlightCurrent);
-
-		// var url = location.pathname.replace(new RegExp('/', 'g'), '');
-
-		// function highlightCurrent(id){
-		// 	if(id === url) {id = ''};
-		// 	self.selectedId = id;
-		// 	self.update();
-		// }
-
-
-
-
-
+    // function home() {
+    //   self.update({
+    //     title:  "Home of the great app",
+    //     body:  "Timeline or dashboard as you like!",
+    //     isFirst: false
+    //   })
+    // }
+    // function charger() {
+    //   self.update({
+    //     title: "First feature of your app",
+    //     body: "It could be a list of something for example.",
+    //     isFirst: true
+    //   })
+    // }
+    // function news() {
+    // }
+    // function faq() {
+    //   self.update({
+    //     title: "Second feature of your app",
+    //     body: "It could be a config page for example.",
+    //     isFirst: false
+    //   })
+    // }
+    // function contact() {
+    //   self.update({
+    //     title: "Second feature of your app",
+    //     body: "It could be a config page for example.",
+    //     isFirst: false
+    //   })
+    // }
 
 
 

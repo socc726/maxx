@@ -1,64 +1,21 @@
 <app-main class="grid__cell--offset-20 grid__cell--width-80">
 
-  <article>
-    <img src="./src/images/logo.jpg" class="maxx-logo" alt="">
-    <h1>{ title }</h1>
-    <p>{ body }</p>
-    <ul if={ isFirst }>
-      <li each={ data }><a href="/first/{ id }">{ title }</a></li>
-    </ul>
-
-    <todo-app></todo-app>
-    
-  </article>
+  <home-page page={this.state.page} ></home-page>
 
   <script>
-    var self = this
-    self.title = 'Now loading...'
-    self.body = ''
-    self.data = [
-      { id: 'apple', title: 'Apple', body: "The world biggest fruit company." },
-      { id: 'orange', title: 'Orange', body: "I don't have the word for it..." }
-    ]
+    var actions = require('./actions.js');
+    var sharedActions = require('../shared/actions.js');
+    var riotGearActions = require('../riotgear/actions.js');
+    var store = this.opts.store;
 
-    var r = riot.route.create();
-    r('/', home);
-    r('charger', charger);
-    r('news', news);
-    r('faq', faq);
-    r('contact', contact);
-    r(home);
+    store.subscribe(function(){
+      this.state = store.getState();
+      this.update();
+    }.bind(this));
 
-    function home() {
-      self.update({
-        title:  "Home of the great app",
-        body:  "Timeline or dashboard as you like!",
-        isFirst: false
-      })
-    }
-    function charger() {
-      self.update({
-        title: "First feature of your app",
-        body: "It could be a list of something for example.",
-        isFirst: true
-      })
-    }
-    function news() {
-    }
-    function faq() {
-      self.update({
-        title: "Second feature of your app",
-        body: "It could be a config page for example.",
-        isFirst: false
-      })
-    }
-    function contact() {
-      self.update({
-        title: "Second feature of your app",
-        body: "It could be a config page for example.",
-        isFirst: false
-      })
-    }
+    this.on('mount', function(){
+      store.dispatch(actions.createHomePage());
+    });
   </script>
 
   <style scoped>

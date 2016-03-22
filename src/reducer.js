@@ -28,6 +28,24 @@ module.exports = function(s={tasks:[]}, a){
 			return Object.assign({}, state, {drawer:action.data});
 		case 'SIDEBAR_CREATED':
 			return Object.assign({}, state, {sidebar:action.data});
+		case 'OPEN_HOME_PAGE':
+			return Object.assign({}, state, {page:action.data});
+		case 'OPEN_PRODUCTS_PAGE':
+			return Object.assign({}, state, {page:action.data});
+		case 'OPEN_PRODUCT_PAGE':
+			return Object.assign({}, state, {page:action.data});
+		case 'OPEN_CHECKOUT_PAGE':
+			return Object.assign({}, state, {page:action.data});
+		case 'OPEN_SHOPPING_CART_PAGE':
+			return Object.assign({}, state, {page:action.data});
+		case 'OPEN_RECEIPT_PAGE':
+			return Object.assign({}, state, {page:action.data});
+		case 'OPEN_NEWS_PAGE':
+			return Object.assign({}, state, {page:action.data});
+		case 'OPEN_FAQ_PAGE':
+			return Object.assign({}, state, {page:action.data});
+		case 'OPEN_CONTACT_PAGE':
+			return Object.assign({}, state, {page:action.data});						
 		default:
 			//return current state
 			return state;
