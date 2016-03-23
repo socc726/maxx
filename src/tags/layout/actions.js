@@ -3,7 +3,11 @@ var toggleLoading = sharedActions.toggleLoading;
 
 module.exports = {
 	createSideBar: createSideBar,
-	createHomePage: createHomePage
+	createHomePage: createHomePage,
+  createProductsPage: createProductsPage,
+  createFaqPage: createFaqPage,
+  createNewsPage: createNewsPage,
+  createContactPage: createContactPage
 }
 
 function createSideBar(){
@@ -18,7 +22,7 @@ function createSideBar(){
 			},
 			{
 				name: "CR2 Charger & Batteries",
-				url: "charger"
+				url: "products"
 			},
 			{
 				name: "News",
@@ -178,47 +182,4 @@ function openContactPage(page){
 function sideBarCreated(sidebar){
 	return {type: 'SIDEBAR_CREATED', data:sidebar}
 }
-
-
-
-
-
-		// var r = riot.route.create();
-
-		// r(highlightCurrent);
-
-		// var url = location.pathname.replace(new RegExp('/', 'g'), '');
-
-		// function highlightCurrent(id){
-		// 	if(id === url) {id = ''};
-		// 	self.selectedId = id;
-		// 	self.update();
-		// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

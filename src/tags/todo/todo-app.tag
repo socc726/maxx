@@ -53,7 +53,7 @@
 		store.dispatch(riotGearActions.closeDrawer());
 	}
 
-	this.on('mount', function(){
+	this._parent._parent.on('mount', function(){
 		store.dispatch(actions.loadTasks());
 	});
 </script>

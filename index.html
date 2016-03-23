@@ -6,11 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<title>Maxx Rechargeables</title>
-		<link rel="stylesheet" href="http://dev.etsdev.net/etsemoney.com/hp/dist/v3/jquery.hosted-payments.min.css">
-	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-
-	<!-- if dev -->
-	<script src="http://dev.etsdev.net/etsemoney.com/hp/dist/v3/jquery.hosted-payments.min.js"></script>
 </head>
 <body class="grid">
 
@@ -18,57 +13,10 @@
 		<app-sidebar></app-sidebar>
 		<app-main></app-main>
 		<div class="grid__cell--offset-20 grid__cell--width-80">
-			
-				<p class="hidden ecomId" style="display:none" >d8857a83-34a6-424d-9988-04fe21ea3c30</p>
-
-	<div id="HostedPaymentsV3"></div>		
-		</div>
-
 	</div>
 	
 
 	<script src="bundle.js"></script>
-		<script type="text/javascript">
-	
-		var handleTransaction, handleTransactionError, hostedPaymentDiv, amount, ecomId;
 
-		// if prod
-		var base ="https://etsemoney.com/hp/v3/adapters";
-
-		// if staging
-		base = "https://staging.etsdev.net/etsemoney.com/hp/v3/adapters"
-
-		// if dev
-		base = "http://dev.etsdev.net/etsemoney.com/hp/v3/adapters";
-
-		// get dom elements
-		hostedPaymentDiv = $("#HostedPaymentsV3");
-		amount = $(".amount").text();
-		ecomId = $(".ecomId").text();
-
-		// set data attributes before calling hosted payments method on div.
-		hostedPaymentDiv.data("amount", amount);
-		hostedPaymentDiv.data("ets-key", ecomId);
-
-		handleTransaction = function (transactions) {
-			console.log("Success");
-			console.dir(transactions);
-		};
-
-		handleTransactionError = function (error) {
-			console.log("ERROR");
-			console.dir(error);
-		};
-
-		hostedPaymentDiv.hp({
-				baseUrl: base,
-				successCallback: handleTransaction,
-				errorCallback: handleTransactionError,
-				paymentService: "EMoney",
-				paymentTypeOrder: [0, 3, 4]
-		});
-
-
-	</script>
 </body>
 </html>

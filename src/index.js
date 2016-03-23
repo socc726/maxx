@@ -4,6 +4,41 @@ var thunk = require('redux-thunk').default;
 var reducer = require('./reducer.js');
 var blaze = require('blaze');
 var styles = require("./styles/styles.css");
+var layoutActions = require('./tags/layout/actions.js');
+
+var createStoreWithMiddleware = redux.compose(
+	redux.applyMiddleware(thunk)
+)(redux.createStore);
+
+var reduxStore = createStoreWithMiddleware(reducer);
+
+riot.route(function(collection,id,action){
+	var count = 1;
+	if(collection == "contact"){
+		reduxStore.dispatch(layoutActions.createContactPage());	
+	}
+	if(collection == "news"){
+		reduxStore.dispatch(layoutActions.createNewsPage());
+	}
+	if(collection == "faq"){
+		reduxStore.dispatch(layoutActions.createFaqPage());
+	}
+	if(collection == "products"){
+		reduxStore.dispatch(layoutActions.createProductsPage());
+	}
+	if(!collection && count > 1){
+		reduxStore.dispatch(layoutActions.createHomePage());
+	}
+	count++;
+	console.log("ROUTE CHANGE" + id);
+});
+
+document.addEventListener('DOMContentLoaded', function(){
+	riot.mount('app-sidebar', {store:reduxStore});
+	riot.mount('app-main', {store:reduxStore});
+	riot.route.base('/');
+	riot.route.start(true);
+});
 
 // layouts
 require('./tags/layout/app-sidebar.tag');
@@ -36,21 +71,3 @@ require('./tags/shared/error-message.tag');
 
 //loading gif
 require('./tags/shared/loading-indicator.tag');
-
-
-var createStoreWithMiddleware = redux.compose(
-	redux.applyMiddleware(thunk)
-)(redux.createStore);
-
-var reduxStore = createStoreWithMiddleware(reducer);
-
-
-riot.route(function(collection,id,action){
-	console.log("ROUTE CHANGE" + id);
-});
-
-document.addEventListener('DOMContentLoaded', function(){
-		riot.mount('*', {store:reduxStore});
-		riot.route.base('/');
-		riot.route.start(true);
-});

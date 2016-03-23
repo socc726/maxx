@@ -12,7 +12,6 @@
       this.state = store.getState();
       this.update();
     }.bind(this));
-
     this.on('mount', function(){
       store.dispatch(actions.createHomePage());
     });
