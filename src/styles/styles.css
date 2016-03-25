@@ -7,6 +7,11 @@
        url('../fonts/norwester.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
-.logo {
+.logo, h1 {
   font-family: 'Norwester', Fallback, sans-serif;
+}
+
+#HostedPaymentsV3{
+	margin: 0 auto;
+	display: table;
 }

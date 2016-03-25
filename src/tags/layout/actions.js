@@ -7,7 +7,8 @@ module.exports = {
   createProductsPage: createProductsPage,
   createFaqPage: createFaqPage,
   createNewsPage: createNewsPage,
-  createContactPage: createContactPage
+  createContactPage: createContactPage,
+  createCheckOutPage: createCheckOutPage
 }
 
 function createSideBar(){
@@ -34,7 +35,7 @@ function createSideBar(){
 			},
 			{
 				name: "Contact Us",
-				url: "contact"
+				url: "checkout"
 			}
 
 		];
@@ -53,8 +54,6 @@ function createSideBar(){
 function createHomePage(){
   return function(dispatch, action){
 
-    dispatch(toggleLoading(true));
-
     var page = {
       id: "HOME",
       title: "Home Page",
@@ -64,15 +63,12 @@ function createHomePage(){
     console.log('CREATING HOMEPAGE');
 
     dispatch(openHomePage(page));
-
-    dispatch(toggleLoading(false));   
+  
   }
 }
 
 function createProductsPage(){
   return function(dispatch, action){
-
-    dispatch(toggleLoading(true));
 
     var page = {
       id: "PRODUCTS",
@@ -83,15 +79,11 @@ function createProductsPage(){
     console.log('CREATING PRODUCTS PAGE');
 
     dispatch(openProductsPage(page));
-
-    dispatch(toggleLoading(false));   
   }
 }
 
 function createNewsPage(){
   return function(dispatch, action){
-
-    dispatch(toggleLoading(true));
 
     var page = {
       id: "NEWS",
@@ -102,15 +94,12 @@ function createNewsPage(){
     console.log('CREATING HOMEPAGE');
 
     dispatch(openNewsPage(page));
-
-    dispatch(toggleLoading(false));   
+ 
   }
 }
 
 function createFaqPage(){
   return function(dispatch, action){
-
-    dispatch(toggleLoading(true));
 
     var page = {
       id: "FAQ",
@@ -121,15 +110,11 @@ function createFaqPage(){
     console.log('CREATING HOMEPAGE');
 
     dispatch(openHomePage(page));
-
-    dispatch(toggleLoading(false));   
   }
 }
 
 function createContactPage(){
   return function(dispatch, action){
-
-    dispatch(toggleLoading(true));
 
     var page = {
       id: "CONTACT",
@@ -140,8 +125,21 @@ function createContactPage(){
     console.log('CREATING HOMEPAGE');
 
     dispatch(openHomePage(page));
+  }
+}
 
-    dispatch(toggleLoading(false));   
+function createCheckOutPage(){
+  return function(dispatch, action){
+
+    var page = {
+      id: "CHECKOUT",
+      title: "Checkout Page",
+      body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
+    };
+
+    console.log('CREATING Checkout');
+
+    dispatch(openCheckoutPage(page));
   }
 }
 

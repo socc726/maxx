@@ -13,7 +13,6 @@ var createStoreWithMiddleware = redux.compose(
 var reduxStore = createStoreWithMiddleware(reducer);
 
 riot.route(function(collection,id,action){
-	var count = 1;
 	if(collection == "contact"){
 		reduxStore.dispatch(layoutActions.createContactPage());	
 	}
@@ -26,10 +25,12 @@ riot.route(function(collection,id,action){
 	if(collection == "products"){
 		reduxStore.dispatch(layoutActions.createProductsPage());
 	}
-	if(!collection && count > 1){
+	if(collection == "checkout"){
+		reduxStore.dispatch(layoutActions.createCheckOutPage());
+	}
+	if(!collection){
 		reduxStore.dispatch(layoutActions.createHomePage());
 	}
-	count++;
 	console.log("ROUTE CHANGE" + id);
 });
 

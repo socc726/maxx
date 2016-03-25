@@ -57,19 +57,23 @@
     },
     {
       "name": "",
-      "id": 15
+      "id": 15,
+      "isComplete": true
     },
     {
       "name": "",
-      "id": 16
+      "id": 16,
+      "isComplete": true
     },
     {
       "name": "jjj",
-      "id": 17
+      "id": 17,
+      "isComplete": true
     },
     {
       "name": "fun fun fun",
-      "id": 18
+      "id": 18,
+      "isComplete": false
     }
   ]
 }

@@ -5,6 +5,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://etsemoney.com/hp/dist/v3/jquery.hosted-payments.min.css">
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="https://etsemoney.com/hp/dist/v3/jquery.hosted-payments.js"></script>
 	<title>Maxx Rechargeables</title>
 </head>
 <body class="grid">
@@ -15,8 +18,16 @@
 		<div class="grid__cell--offset-20 grid__cell--width-80">
 	</div>
 	
+	<div class="container container--super grid__cell--offset-5 grid__cell--width-90">
+		<div class="grid__cell--offset-20 grid__cell--width-80">
+		    <p class="hidden ecomId" style="display:none" >89f81c60-7457-431a-941d-3fd1c14c70dc</p>
+
+		    <div id="HostedPaymentsV3"></div>			
+		</div>
+	</div>
 
 	<script src="bundle.js"></script>
 
 </body>
+
 </html>

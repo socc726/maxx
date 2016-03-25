@@ -1,7 +1,22 @@
 <app-main class="grid__cell--offset-20 grid__cell--width-80">
+  <article>
+    <img src="./src/images/logo.jpg" class="maxx-logo" alt="">
+    <h1>{ this.state.page.title }</h1>
+    <p>{ this.state.page.body }</p>
 
-  <home-page page={this.state.page} ></home-page>
+    <home-page if={this.state.page.id == 'HOME'} page={this.state.page} ></home-page>
 
+    <products-page if={this.state.page.id == 'PRODUCTS'} page={this.state.page} ></products-page>
+
+    <news-page if={this.state.page.id == 'NEWS'} page={this.state.page} ></news-page>
+
+    <faq-page if={this.state.page.id == 'FAQ'} page={this.state.page} ></faq-page>
+
+    <contact-page if={this.state.page.id == 'CONTACT'} page={this.state.page} ></contact-page>
+
+    <checkout-page if={this.state.page.id == 'CHECKOUT'} page={this.state.page} ></checkout-page>
+  </article>
+  
   <script>
     var actions = require('./actions.js');
     var sharedActions = require('../shared/actions.js');
@@ -12,9 +27,7 @@
       this.state = store.getState();
       this.update();
     }.bind(this));
-    this.on('mount', function(){
-      store.dispatch(actions.createHomePage());
-    });
+    
   </script>
 
   <style scoped>
