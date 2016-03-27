@@ -11,7 +11,7 @@ module.exports = {
 
 function loadTasks(){
 	return function(dispatch, getState){
-
+		console.log(getState());
 		dispatch(toggleLoading(true));
 
 		var request = {
@@ -19,7 +19,7 @@ function loadTasks(){
 		}
 
 		var httpClient = new http.client([]);
-		
+
 		httpClient.get(request).then(function(data){
 			dispatch(tasksLoaded(data));
 			dispatch(toggleLoading(false));

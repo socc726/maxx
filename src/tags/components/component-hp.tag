@@ -5,7 +5,7 @@
 		    <p class="hidden ecomId" style="display:none" >89f81c60-7457-431a-941d-3fd1c14c70dc</p>
 
 		    <div id="HostedPaymentsV3"></div
-		    <button onclick="handleCheck"></button>	
+		    <button onclick="handleSubmit"></button>	
 		</div>
 	</div>
 	<script>
@@ -21,7 +21,8 @@
 			store.dispatch(actions.createPaymentInstrument());
 			console.log(this);
 		});
-		handleCheck(evt){
+		
+		handleSubmit(evt){
 			this.opts.handleSubmit(evt);
 		}
 	</script>

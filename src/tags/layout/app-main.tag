@@ -14,7 +14,7 @@
 
     <contact-page if={this.state.page.id == 'CONTACT'} page={this.state.page} ></contact-page>
 
-    <checkout-page each={true ? [] : []} page={this.state.page} ></checkout-page>
+    <checkout-page if={this.state.page.id == 'CHECKOUT'} page={this.state.page} ></checkout-page>
   </article>
 
   <script>

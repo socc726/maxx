@@ -1,4 +1,5 @@
 <checkout-page>
+	<button onclick={handlePaymentInstrument}>Create Payment Instrument</button>
 	<component-shipping address={this.state.shippingAddress}>
 	</component-shipping>
 
@@ -14,10 +15,20 @@
 	    var actions = require('./actions.js');
 	    var store = this._parent.opts.store;
 
+		store.subscribe(function(){
+			this.state = store.getState();
+			this.update();
+		}.bind(this));
+
 		this.on('mount', function(){
-			store.dispatch(actions.loadHostedPayments());
+			console.log('baker');
+			store.dispatch(actions.createSignInRequest());
 		});
 
+		handlePaymentInstrument(event){
+			store.dispatch(actions.createPaymentInstrument());
+		}
+		
 		handleSubmit(event){
 			if(this.state.shippingAddress.isValid && this.state.billingAddress.isValid){
 				store.dispatch(actions.submitPayment(id,isComplete));

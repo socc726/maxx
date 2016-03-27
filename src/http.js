@@ -81,7 +81,8 @@ function makeHttpRequest(method, request){
     url = request.url,
     queryParams = request.queryParams,
     headers = request.requestHeaders,
-    callback = request.callback;
+    callback = request.callback,
+    data = request.data;
 
     url += setQueryParams(queryParams);
 
@@ -102,7 +103,11 @@ function makeHttpRequest(method, request){
       reject(this.statusText);
     }
 
-    client.send();
+    if(data){
+    	data = JSON.stringify(data);
+    }
+
+    client.send(data);
 
   });
 
@@ -139,7 +144,9 @@ function setHeaders(headers, client){
   }
 }
 
+function setJSONBody(){
 
+}
 function valuesToArray(obj){
   var values = [];
 
