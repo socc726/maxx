@@ -10,10 +10,6 @@
 
 <rg-modal hide={hideModal} modal={this.state.modal}></rg-modal>
 
-<rg-bubble bubble="{{text:'french'}}">
-	Super long
-</rg-bubble>
-
 <script>
 	var actions = require('./actions.js');
 	var sharedActions = require('../shared/actions.js');

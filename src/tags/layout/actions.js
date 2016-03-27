@@ -15,7 +15,6 @@ function createSideBar(){
 	return function(dispatch, action){
 		dispatch(toggleLoading(true));
 
-		console.log('CREATING SIDEBAR');
 		var links = [
 			{
 				name: "Home", 
@@ -60,8 +59,6 @@ function createHomePage(){
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
 
-    console.log('CREATING HOMEPAGE');
-
     dispatch(openHomePage(page));
   
   }
@@ -76,8 +73,6 @@ function createProductsPage(){
       body: "Choose from the products below:"
     };
 
-    console.log('CREATING PRODUCTS PAGE');
-
     dispatch(openProductsPage(page));
   }
 }
@@ -90,8 +85,6 @@ function createNewsPage(){
       title: "News Page",
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
-
-    console.log('CREATING HOMEPAGE');
 
     dispatch(openNewsPage(page));
  
@@ -107,8 +100,6 @@ function createFaqPage(){
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
 
-    console.log('CREATING HOMEPAGE');
-
     dispatch(openHomePage(page));
   }
 }
@@ -122,8 +113,6 @@ function createContactPage(){
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
 
-    console.log('CREATING HOMEPAGE');
-
     dispatch(openHomePage(page));
   }
 }
@@ -136,8 +125,6 @@ function createCheckOutPage(){
       title: "Checkout Page",
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
-
-    console.log('CREATING Checkout');
 
     dispatch(openCheckoutPage(page));
   }

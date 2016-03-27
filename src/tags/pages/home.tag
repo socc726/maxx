@@ -1,10 +1,4 @@
 <home-page>
-
     <todo-app></todo-app>
-    
-  </article>
-
-	<script>
-		console.log("DJLKSJ")
-	</script>
+	<component-logos></component-logos>
 </home-page>

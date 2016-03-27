@@ -1,6 +1,7 @@
 var sharedActions = require('../shared/actions.js');
 var toggleLoading = sharedActions.toggleLoading;
 var tempErrorMessage = sharedActions.tempErrorMessage;
+var http = require('../../http.js');
 
 module.exports = {
 	loadTasks: loadTasks,
@@ -10,19 +11,19 @@ module.exports = {
 
 function loadTasks(){
 	return function(dispatch, getState){
+
 		dispatch(toggleLoading(true));
-		var request = new XMLHttpRequest();
-		request.open('GET', 'http://localhost:3000/tasks', true);
-		request.onload = function(){
-			if(request.status >= 200 && request.status < 400){
-				var data = JSON.parse(request.responseText);
-				dispatch(tasksLoaded(data));
-			}
-			dispatch(toggleLoading(false));
+
+		var request = {
+			url: 'http://localhost:3000/tasks'
 		}
-		setTimeout(function(){
-			request.send();
-		}, 2000)
+
+		var httpClient = new http.client([]);
+		
+		httpClient.get(request).then(function(data){
+			dispatch(tasksLoaded(data));
+			dispatch(toggleLoading(false));
+		}).catch(httpClient.error);
 	}
 }
 

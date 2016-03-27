@@ -4,7 +4,7 @@
     <h1>{ this.state.page.title }</h1>
     <p>{ this.state.page.body }</p>
 
-    <home-page if={this.state.page.id == 'HOME'} page={this.state.page} ></home-page>
+    <home-page page={this.state.page} ></home-page>
 
     <products-page if={this.state.page.id == 'PRODUCTS'} page={this.state.page} ></products-page>
 
@@ -14,9 +14,9 @@
 
     <contact-page if={this.state.page.id == 'CONTACT'} page={this.state.page} ></contact-page>
 
-    <checkout-page if={this.state.page.id == 'CHECKOUT'} page={this.state.page} ></checkout-page>
+    <checkout-page each={true ? [] : []} page={this.state.page} ></checkout-page>
   </article>
-  
+
   <script>
     var actions = require('./actions.js');
     var sharedActions = require('../shared/actions.js');

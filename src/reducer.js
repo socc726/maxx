@@ -45,7 +45,9 @@ module.exports = function(s={tasks:[]}, a){
 		case 'OPEN_FAQ_PAGE':
 			return Object.assign({}, state, {page:action.data});
 		case 'OPEN_CONTACT_PAGE':
-			return Object.assign({}, state, {page:action.data});						
+			return Object.assign({}, state, {page:action.data});
+		case 'LOGOS_CREATED':
+			return Object.assign({}, state, {images:action.data});								
 		default:
 			//return current state
 			return state;

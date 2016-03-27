@@ -57,6 +57,9 @@ require('./tags/pages/receipt.tag');
 require('./tags/pages/checkout.tag');
 require('./tags/pages/shopping-cart.tag');
 
+// components
+require('./tags/components/component-logos.tag');
+
 // todo component
 require('./tags/todo/todo-app.tag');
 require('./tags/todo/task-list.tag');
