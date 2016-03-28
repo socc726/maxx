@@ -13,8 +13,8 @@
     <faq-page if={this.state.page.id == 'FAQ'} page={this.state.page} ></faq-page>
 
     <contact-page if={this.state.page.id == 'CONTACT'} page={this.state.page} ></contact-page>
-
-    <checkout-page if={this.state.page.id == 'CHECKOUT'} page={this.state.page} ></checkout-page>
+    <checkout-page page={this.state.page} ></checkout-page>
+<!--     <checkout-page if={this.state.page.id == 'CHECKOUT'} page={this.state.page} ></checkout-page> -->
   </article>
 
   <script>
@@ -41,27 +41,6 @@
       text-align: center;
       color: #666;
       width:80%;
-    }
-    ul {
-      padding: 10px;
-      list-style: none;
-    }
-    li {
-      display: inline-block;
-      margin: 5px;
-    }
-    a {
-      display: block;
-      background: #f7f7f7;
-      text-decoration: none;
-      width: 150px;
-      height: 150px;
-      line-height: 150px;
-      color: inherit;
-    }
-    a:hover {
-      background: #eee;
-      color: #000;
     }
     .maxx-logo{
       width: 60%;

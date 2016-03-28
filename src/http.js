@@ -4,37 +4,7 @@ module.exports = {
 
 var clientId,
 masterKey,
-businessId = "421be891",
 functionIndex = 0
-
-function getClientIdAndMasterKey(businessId) {
-
-  var request = {
-    url: "https://api.pmoney.com/internal/getclientidandmasterkey",
-    queryParams: {"businessId": businessId},
-    requestHeaders: {"x-api-internal-key": "5fb70b6d93c348de9457ebcb37b06fce"}
-  }
-
-  $http().get(request).then(genericCallback.success).catch(genericCallback.error);
-
-}
-
-function getFullBusinessByClientIdAndMasterKey(clientId, masterkey) {
-  var request = {
-    url: "https://api.pmoney.com/internal/GetFullBusinessByClientIdAndMasterKey",
-    queryParams: {"masterKey": masterkey, "clientId": clientId},
-    requestHeaders: {"x-api-internal-key": "5fb70b6d93c348de9457ebcb37b06fce"}
-  }
-
-  $http().get(request).then(genericCallback.success).catch(genericCallback.error);
-}
-
-function getCustomersFromBusiness(businessId){
-  var request = {
-    url: "http://localhost:45001/api.pmoney.com/businesses/7261988/customers"
-  }
-  $http().get(request).then(genericCallback.success).catch(genericCallback.error);
-}
 
 function $http(functionsToCall) {
   var core = {
@@ -144,9 +114,6 @@ function setHeaders(headers, client){
   }
 }
 
-function setJSONBody(){
-
-}
 function valuesToArray(obj){
   var values = [];
 

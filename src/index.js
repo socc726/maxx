@@ -59,7 +59,7 @@ require('./tags/pages/shopping-cart.tag');
 
 // components
 require('./tags/components/component-logos.tag');
-
+require('./tags/components/component-hp.tag');
 // todo component
 require('./tags/todo/todo-app.tag');
 require('./tags/todo/task-list.tag');

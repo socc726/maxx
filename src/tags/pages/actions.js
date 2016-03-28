@@ -2,6 +2,8 @@ var sharedActions = require('../shared/actions.js');
 var toggleLoading = sharedActions.toggleLoading;
 var http = require('../../http.js');
 var apikey = '89f81c60-7457-431a-941d-3fd1c14c70dc';
+var username = '139647';
+var password = '209773';
 var request = {
 	url: 'https://etsemoney.com/hp/v3/adapters',
 	requestHeaders: { 'Content-Type': 'application/json' }
@@ -12,7 +14,8 @@ module.exports = {
   createPaymentInstrument: createPaymentInstrument,
   createChargeRequest: createChargeRequest,
   createAccountStatusRequest: createAccountStatusRequest,
-  createTransactionStatusRequest: createTransactionStatusRequest
+  createTransactionStatusRequest: createTransactionStatusRequest,
+  createAuthorizeRequest: createAuthorizeRequest
 }
 
 function createSignInRequest(){
@@ -22,8 +25,7 @@ function createSignInRequest(){
 		request.data = {
 			'signIn' : {
 				'signInRequest': {
-					'apiKey': apikey,
-					'correlationId': 0
+					'apiKey': apikey
 				}
 			}
 		}
@@ -44,7 +46,6 @@ function createPaymentInstrument(){
 				'createPaymentInstrumentRequest':{
 					'token': hostedState.signInResponse.token,
 					'name': 'Frank Pringle',
-					'correlationId': '',
 					'properties': {
 						'nameOnCard': 'Sam Merrill',
 						'cardNumber': '4012111111111111',
@@ -76,17 +77,54 @@ function createChargeRequest(){
 		request.data = {
 			'charge': {
 				'chargeRequest': {
+					'__request': {
+						'token': hostedState.signInResponse.token,
+						'name': 'Frank Pringle',
+						'properties': {
+							'nameOnCard': 'Sam Merrill',
+							'cardNumber': '4012111111111111',
+							'expirationDate': '12/2019',
+							'cvv':'999'
+						},
+						'billingAddress': {
+							'addressLine1': '',
+							'postalCode': ''
+						}
+					},
 					'token': getState().hosted.signInResponse.token,
 					'transactionId': getState().hosted.createPaymentInstrumentResponse.transactionId,
 					'instrumentId': getState().hosted.createPaymentInstrumentResponse.instrumentId,
-					'amount': 30.00,
-					'correlationId': ''
+					'amount': 30.00
 				}
 			}
 		}
 
 		httpClient.post(request).then(function(data){
 			hostedState.chargeResponse = data.chargeResponse;
+			dispatch(hostedResponse(hostedState));
+			dispatch(toggleLoading(false));
+		})
+	}
+}
+
+function createAuthorizeRequest(){
+	return function(dispatch, getState){
+		var httpClient = new http.client([]);
+		//TODO: amount: getState().shoppingCart.total
+		var hostedState = getState().hosted;
+		request.data = {
+			'authorize': {
+				'authorizeRequest': {
+					'token': getState().hosted.signInResponse.token,
+					'amount': 30.00,
+					'transactionId': getState().hosted.createPaymentInstrumentResponse.transactionId,
+					'instrumentId': getState().hosted.createPaymentInstrumentResponse.instrumentId,
+				}
+			}
+		}
+
+		httpClient.post(request).then(function(data){
+			hostedState.authorizeResponse = data.authorizeResponse;
 			dispatch(hostedResponse(hostedState));
 			dispatch(toggleLoading(false));
 		})
@@ -103,7 +141,6 @@ function createAccountStatusRequest(){
 				'statusRequest': {
 					'token': getState().hosted.signInResponse.token,
 					'instrumentId': getState().hosted.createPaymentInstrumentResponse.instrumentId,
-					'correlationId': ''
 				}
 			}
 		}
@@ -126,7 +163,6 @@ function createTransactionStatusRequest(){
 				'statusRequest': {
 					'token': getState().hosted.signInResponse.token,
 					'transactionId': getState().hosted.createPaymentInstrumentResponse.transactionId,
-					'correlationId': ''
 				}
 			}
 		}

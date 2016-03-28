@@ -59,7 +59,7 @@ function createHomePage(){
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
 
-    dispatch(openHomePage(page));
+    dispatch(openPage(page));
   
   }
 }
@@ -73,7 +73,7 @@ function createProductsPage(){
       body: "Choose from the products below:"
     };
 
-    dispatch(openProductsPage(page));
+    dispatch(openPage(page));
   }
 }
 
@@ -86,7 +86,7 @@ function createNewsPage(){
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
 
-    dispatch(openNewsPage(page));
+    dispatch(openPage(page));
  
   }
 }
@@ -100,7 +100,7 @@ function createFaqPage(){
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
 
-    dispatch(openHomePage(page));
+    dispatch(openPage(page));
   }
 }
 
@@ -113,7 +113,7 @@ function createContactPage(){
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
 
-    dispatch(openHomePage(page));
+    dispatch(openPage(page));
   }
 }
 
@@ -126,44 +126,14 @@ function createCheckOutPage(){
       body: "Welcome to Maxx Rechargeable. Home to the only ion battery recharger"
     };
 
-    dispatch(openCheckoutPage(page));
+    dispatch(openPage(page));
   }
 }
 
-function openHomePage(page){
-  return {type: 'OPEN_HOME_PAGE', data:page}
-}
-function openProductsPage(page){
-  return {type: 'OPEN_PRODUCTS_PAGE', data:page}
+function openPage(page){
+  return {type: 'OPEN_PAGE', data:page}
 }
 
-function openProductPage(page){
-  return {type: 'OPEN_PRODUCT_PAGE', data:page}
-}
-
-function openCheckoutPage(page){
-  return {type: 'OPEN_CHECKOUT_PAGE', data:page}
-}
-
-function openShoppingCartPage(page){
-  return {type: 'OPEN_SHOPPING_CART_PAGE', data:page}
-}
-
-function openReceiptPage(page){
-  return {type: 'OPEN_RECEIPT_PAGE', data:page}
-}
-
-function openNewsPage(page){
-  return {type: 'OPEN_NEWS_PAGE', data:page}
-}
-
-function openFaqPage(page){
-  return {type: 'OPEN_FAQ_PAGE', data:page}
-}
-
-function openContactPage(page){
-  return {type: 'OPEN_CONTACT_PAGE', data:page}
-}
 function sideBarCreated(sidebar){
 	return {type: 'SIDEBAR_CREATED', data:sidebar}
 }
