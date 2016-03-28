@@ -1,5 +1,8 @@
 <checkout-page>
 	<button onclick={handlePaymentInstrument}>Create Payment Instrument</button>
+	<button onclick={handleChargeRequest}>Charge Request</button>
+	<button onclick={handleAccountStatusRequest}>Account Status</button>
+	<button onclick={handleTransactionStatusRequest}>Transaction Status</button>
 	<component-shipping address={this.state.shippingAddress}>
 	</component-shipping>
 
@@ -28,7 +31,19 @@
 		handlePaymentInstrument(event){
 			store.dispatch(actions.createPaymentInstrument());
 		}
-		
+
+		handleChargeRequest(event){
+			store.dispatch(actions.createChargeRequest());
+		}
+
+		handleAccountStatusRequest(event){
+			store.dispatch(actions.createAccountStatusRequest());
+		}
+
+		handleTransactionStatusRequest(event){
+			store.dispatch(actions.createTransactionStatusRequest());
+		}
+
 		handleSubmit(event){
 			if(this.state.shippingAddress.isValid && this.state.billingAddress.isValid){
 				store.dispatch(actions.submitPayment(id,isComplete));
