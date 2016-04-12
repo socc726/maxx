@@ -6,7 +6,7 @@ var username = '139647';
 var password = '209773';
 var request = {
 	url: 'https://etsemoney.com/hp/v3/adapters',
-	requestHeaders: { 'Content-Type': 'application/json' }
+	requestHeaders: { 'Content-Type': 'application/json', 'X-EMoney-Manager': '1234' }
 }
 
 module.exports = {
