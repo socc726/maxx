@@ -4,9 +4,10 @@ var http = require('../../http.js');
 var apikey = '89f81c60-7457-431a-941d-3fd1c14c70dc';
 var username = '139647';
 var password = '209773';
+
 var request = {
 	url: 'https://etsemoney.com/hp/v3/adapters',
-	requestHeaders: { 'Content-Type': 'application/json' }
+	requestHeaders: { 'Content-Type': 'application/json', 'X-EMoney-Manager': 'EMoney' }
 }
 
 module.exports = {
@@ -53,8 +54,8 @@ function createPaymentInstrument(){
 						'cvv':'999'
 					},
 					'billingAddress': {
-						'addressLine1': '',
-						'postalCode': ''
+						'addressLine1': '8320',
+						'postalCode': '85284'
 					}
 				}
 			}
@@ -87,8 +88,8 @@ function createChargeRequest(){
 							'cvv':'999'
 						},
 						'billingAddress': {
-							'addressLine1': '',
-							'postalCode': ''
+						'addressLine1': '8320',
+						'postalCode': '85284'
 						}
 					},
 					'token': getState().hosted.signInResponse.token,
@@ -178,21 +179,3 @@ function createTransactionStatusRequest(){
 function hostedResponse(response){
 	return {type:'HOSTED_RESPONSE', data:response};
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
