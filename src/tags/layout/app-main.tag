@@ -4,16 +4,16 @@
     <h1>{ this.state.page.title }</h1>
     <p>{ this.state.page.body }</p>
 
-    <home-page page={this.state.page} ></home-page>
+    <home-page class="page-tag" page={this.state.page} ></home-page>
 
-    <products-page if={this.state.page.id == 'PRODUCTS'} page={this.state.page} ></products-page>
+    <products-page class="page-tag" if={this.state.page.id == 'PRODUCTS'} page={this.state.page} ></products-page>
 
-    <news-page if={this.state.page.id == 'NEWS'} page={this.state.page} ></news-page>
+    <news-page class="page-tag" if={this.state.page.id == 'NEWS'} page={this.state.page} ></news-page>
 
-    <faq-page if={this.state.page.id == 'FAQ'} page={this.state.page} ></faq-page>
+    <faq-page class="page-tag" if={this.state.page.id == 'FAQ'} page={this.state.page} ></faq-page>
 
-    <contact-page if={this.state.page.id == 'CONTACT'} page={this.state.page} ></contact-page>
-    <checkout-page page={this.state.page} ></checkout-page>
+    <contact-page class="page-tag" if={this.state.page.id == 'CONTACT'} page={this.state.page} ></contact-page>
+    <checkout-page class="page-tag" page={this.state.page} ></checkout-page>
 <!--     <checkout-page if={this.state.page.id == 'CHECKOUT'} page={this.state.page} ></checkout-page> -->
   </article>
 
@@ -44,6 +44,10 @@
     }
     .maxx-logo{
       width: 60%;
+      display: table;
+      margin: 0 auto;
+    }
+    .page-tag{
       display: table;
       margin: 0 auto;
     }

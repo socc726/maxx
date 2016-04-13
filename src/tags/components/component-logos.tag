@@ -1,5 +1,5 @@
-<component-logos>
-	<div each={img in this.state.images.images}>
+<component-logos class="component-logos">
+	<div class="logos" each={img in this.state.images.images}>
 
 		<img src="{img.src}" alt="{img.name}">
 
@@ -20,9 +20,16 @@
 	</script>
 	<style scoped>
 	    img {
-	      width: 10%;
+	      width: 80%;
 	      vertical-align: middle;
-	      padding:10px
+	    }
+		.component-logos{
+			display:table;
+			
+		}
+	    .logos{
+	    	display: inline-block;
+	    	width: 100px;
 	    }
 
   </style>
