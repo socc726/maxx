@@ -1,0 +1,2 @@
+<component-shoppingcart>
+</component-shoppingcart>

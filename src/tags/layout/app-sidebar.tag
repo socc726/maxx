@@ -6,7 +6,11 @@
 </a>
 <div id="menu" class=" active">
   <div class="pure-menu">
-    <a class="pure-menu-heading" href="#">MAXX</a>
+
+    <a class="pure-menu-heading" href="#">
+      <i class="fa fa-shopping-cart fa-lg"></i>
+      <component-cart-count count={this.state.shoppingcart.count}></component-cart-count>
+    </a>
 
     <ul class="pure-menu-list">
     	<sidebar-item links={this.state.sidebar.links} ></sidebar-item>

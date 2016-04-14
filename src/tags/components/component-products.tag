@@ -1,6 +1,6 @@
 <component-products class="container container--medium">  
-  <div class="grid">
-    <div class="grid__cell" each={product in this.opts.products}>
+  <div class="pure-g">
+    <div class="pure-u-1-3" each={product in this.opts.products}>
 
       <div class="image-wrapper overlay-fade-in">
         

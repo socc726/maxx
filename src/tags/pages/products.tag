@@ -11,11 +11,9 @@
     }.bind(this));
 
     this.on('mount', function(){
-      console.log('baker');
       store.dispatch(actions.getProductsFromInventory());
     });
     this.on('umount', function(){
-      console.log('freshbt')
     });
   </script>
 </products-page>

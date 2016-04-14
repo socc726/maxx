@@ -35,7 +35,9 @@ module.exports = function(s={tasks:[]}, a){
 		case 'HOSTED_RESPONSE':
 			return Object.assign({}, state, {hosted:action.data});
 		case 'INVENTORY_RESPONSE':
-			return Object.assign({}, state, {inventory:action.data});			
+			return Object.assign({}, state, {inventory:action.data});
+		case 'SHOPPING_CART':
+			return Object.assign({}, state, {shoppingcart:action.data});
 		default:
 			//return current state
 			return state;
