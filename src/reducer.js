@@ -33,7 +33,9 @@ module.exports = function(s={tasks:[]}, a){
 		case 'LOGOS_CREATED':
 			return Object.assign({}, state, {images:action.data});
 		case 'HOSTED_RESPONSE':
-			return Object.assign({}, state, {hosted:action.data});								
+			return Object.assign({}, state, {hosted:action.data});
+		case 'INVENTORY_RESPONSE':
+			return Object.assign({}, state, {inventory:action.data});			
 		default:
 			//return current state
 			return state;
