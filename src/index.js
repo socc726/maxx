@@ -2,7 +2,7 @@ var riot = require('riot');
 var redux = require('redux');
 var thunk = require('redux-thunk').default;
 var reducer = require('./reducer.js');
-var blaze = require('blaze');
+var blaze = require('pure');
 var styles = require("./styles/styles.css");
 var layoutActions = require('./tags/layout/actions.js');
 
@@ -60,6 +60,7 @@ require('./tags/pages/shopping-cart.tag');
 // components
 require('./tags/components/component-logos.tag');
 require('./tags/components/component-hp.tag');
+require('./tags/components/component-products.tag');
 // todo component
 require('./tags/todo/todo-app.tag');
 require('./tags/todo/task-list.tag');

@@ -4,7 +4,7 @@
     <h1>{ this.state.page.title }</h1>
     <p>{ this.state.page.body }</p>
 
-    <home-page class="page-tag" page={this.state.page} ></home-page>
+    <home-page class="page-tag" if={this.state.page.id == 'HOME'} ></home-page>
 
     <products-page class="page-tag" if={this.state.page.id == 'PRODUCTS'} page={this.state.page} ></products-page>
 
@@ -13,8 +13,10 @@
     <faq-page class="page-tag" if={this.state.page.id == 'FAQ'} page={this.state.page} ></faq-page>
 
     <contact-page class="page-tag" if={this.state.page.id == 'CONTACT'} page={this.state.page} ></contact-page>
-    <checkout-page class="page-tag" page={this.state.page} ></checkout-page>
-<!--     <checkout-page if={this.state.page.id == 'CHECKOUT'} page={this.state.page} ></checkout-page> -->
+    <!-- <checkout-page class="page-tag" page={this.state.page} ></checkout-page> -->
+    <checkout-page if={this.state.page.id == 'CHECKOUT'} page={this.state.page} ></checkout-page>
+
+
   </article>
 
   <script>

@@ -4,9 +4,15 @@ var http = require('../../http.js');
 var apikey = '89f81c60-7457-431a-941d-3fd1c14c70dc';
 var username = '139647';
 var password = '209773';
-var request = {
+
+var hpRequest = {
 	url: 'https://etsemoney.com/hp/v3/adapters',
-	requestHeaders: { 'Content-Type': 'application/json', 'X-EMoney-Manager': '1234' }
+	requestHeaders: { 'Content-Type': 'application/json', 'X-EMoney-Manager': 'EMoney' }
+}
+
+var inventoryRequest = {
+	url: 'https://api.pmoney.com/inventory/712affc1/products',
+	requestHeaders: { 'Content-Type': 'application/json', 'x-api-internal-key': '0133be58be5a4627b0ccaf8258023459', 'Accept': 'application/json'}
 }
 
 module.exports = {
@@ -15,14 +21,27 @@ module.exports = {
   createChargeRequest: createChargeRequest,
   createAccountStatusRequest: createAccountStatusRequest,
   createTransactionStatusRequest: createTransactionStatusRequest,
-  createAuthorizeRequest: createAuthorizeRequest
+  createAuthorizeRequest: createAuthorizeRequest,
+  getProductsFromInventory: getProductsFromInventory
+}
+
+function getProductsFromInventory(){
+	return function(dispatch, getState){
+
+		var httpClient = new http.client([]);
+
+		httpClient.get(inventoryRequest).then(function(data){
+			dispatch(inventoryResponse(data));
+			dispatch(toggleLoading(false));
+		}).catch(httpClient.error);
+	}
 }
 
 function createSignInRequest(){
 	return function(dispatch, getState){
 		var httpClient = new http.client([]);
 
-		request.data = {
+		hpRequest.data = {
 			'signIn' : {
 				'signInRequest': {
 					'apiKey': apikey
@@ -30,7 +49,7 @@ function createSignInRequest(){
 			}
 		}
 
-		httpClient.post(request).then(function(data){
+		httpClient.post(hpRequest).then(function(data){
 			dispatch(hostedResponse(data));
 			dispatch(toggleLoading(false));
 		}).catch(httpClient.error);
@@ -41,7 +60,7 @@ function createPaymentInstrument(){
 	return function(dispatch, getState){
 		var httpClient = new http.client([]);
 		var hostedState = getState().hosted;
-		request.data = {
+		hpRequest.data = {
 			'createPaymentInstrument': {
 				'createPaymentInstrumentRequest':{
 					'token': hostedState.signInResponse.token,
@@ -53,14 +72,14 @@ function createPaymentInstrument(){
 						'cvv':'999'
 					},
 					'billingAddress': {
-						'addressLine1': '',
-						'postalCode': ''
+						'addressLine1': '8320',
+						'postalCode': '85284'
 					}
 				}
 			}
 		}
 
-		httpClient.post(request).then(function(data){
+		httpClient.post(hpRequest).then(function(data){
 			hostedState.createPaymentInstrumentResponse = data.createPaymentInstrumentResponse;
 			dispatch(hostedResponse(hostedState));
 			dispatch(toggleLoading(false));
@@ -74,7 +93,7 @@ function createChargeRequest(){
 		//TODO: amount: getState().shoppingCart.total
 		var hostedState = getState().hosted;
 
-		request.data = {
+		hpRequest.data = {
 			'charge': {
 				'chargeRequest': {
 					'__request': {
@@ -87,8 +106,8 @@ function createChargeRequest(){
 							'cvv':'999'
 						},
 						'billingAddress': {
-							'addressLine1': '',
-							'postalCode': ''
+						'addressLine1': '8320',
+						'postalCode': '85284'
 						}
 					},
 					'token': getState().hosted.signInResponse.token,
@@ -99,7 +118,7 @@ function createChargeRequest(){
 			}
 		}
 
-		httpClient.post(request).then(function(data){
+		httpClient.post(hpRequest).then(function(data){
 			hostedState.chargeResponse = data.chargeResponse;
 			dispatch(hostedResponse(hostedState));
 			dispatch(toggleLoading(false));
@@ -112,7 +131,7 @@ function createAuthorizeRequest(){
 		var httpClient = new http.client([]);
 		//TODO: amount: getState().shoppingCart.total
 		var hostedState = getState().hosted;
-		request.data = {
+		hpRequest.data = {
 			'authorize': {
 				'authorizeRequest': {
 					'token': getState().hosted.signInResponse.token,
@@ -123,7 +142,7 @@ function createAuthorizeRequest(){
 			}
 		}
 
-		httpClient.post(request).then(function(data){
+		httpClient.post(hpRequest).then(function(data){
 			hostedState.authorizeResponse = data.authorizeResponse;
 			dispatch(hostedResponse(hostedState));
 			dispatch(toggleLoading(false));
@@ -136,7 +155,7 @@ function createAccountStatusRequest(){
 		var httpClient = new http.client([]);
 		//TODO: amount: getState().shoppingCart.total
 		var hostedState = getState().hosted;
-		request.data = {
+		hpRequest.data = {
 			'status': {
 				'statusRequest': {
 					'token': getState().hosted.signInResponse.token,
@@ -145,7 +164,7 @@ function createAccountStatusRequest(){
 			}
 		}
 
-		httpClient.post(request).then(function(data){
+		httpClient.post(hpRequest).then(function(data){
 			hostedState.accountStatusResponse = data.statusResponse;
 			dispatch(hostedResponse(hostedState));
 			dispatch(toggleLoading(false));
@@ -158,7 +177,7 @@ function createTransactionStatusRequest(){
 		var httpClient = new http.client([]);
 		//TODO: amount: getState().shoppingCart.total
 		var hostedState = getState().hosted;
-		request.data = {
+		hpRequest.data = {
 			'status': {
 				'statusRequest': {
 					'token': getState().hosted.signInResponse.token,
@@ -167,7 +186,7 @@ function createTransactionStatusRequest(){
 			}
 		}
 
-		httpClient.post(request).then(function(data){
+		httpClient.post(hpRequest).then(function(data){
 			hostedState.transactionStatusResponse = data.statusResponse;
 			dispatch(hostedResponse(hostedState));
 			dispatch(toggleLoading(false));
@@ -178,21 +197,7 @@ function createTransactionStatusRequest(){
 function hostedResponse(response){
 	return {type:'HOSTED_RESPONSE', data:response};
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function inventoryResponse(response){
+	console.log(response);
+	return {type:'INVENTORY_RESPONSE', data:response.items};
+}

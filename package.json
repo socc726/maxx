@@ -29,6 +29,7 @@
     "card": "^1.2.2",
     "jquery": "^2.2.2",
     "local-storage": "^1.4.2",
+    "pure": "^2.67.0",
     "redux": "^3.3.1",
     "redux-thunk": "^2.0.1",
     "riot": "^2.3.17"
