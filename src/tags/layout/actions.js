@@ -130,6 +130,8 @@ function createCheckOutPage(){
   }
 }
 
+
+
 function openPage(page){
   return {type: 'OPEN_PAGE', data:page}
 }
@@ -137,4 +139,3 @@ function openPage(page){
 function sideBarCreated(sidebar){
 	return {type: 'SIDEBAR_CREATED', data:sidebar}
 }
-

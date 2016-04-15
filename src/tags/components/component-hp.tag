@@ -17,7 +17,7 @@
 	            </div>
 	            <div class="hp-col hp-col-right">
 	                <div class="hp-content hp-content-cc hp-content-active">
-	                	<div class='card-wrapper'></div>
+	                	<div class="card-wrapper"></div>
 	                	<br>
 	                	<br>
 						<form class="hp-input-wrapper">
@@ -60,18 +60,20 @@
 			this.state = store.getState();
 			this.update();
 		}.bind(this));
-
+		console.log(this);
 		this.on('mount', function(){
-			var card = new Card({
-				form: 'form',
-				container: '.card-wrapper',
+			$( document ).ready(function() {
+				var card = new Card({
+					form: 'form',
+					container: '.card-wrapper',
 
-				placeholders: {
-					number: '**** **** **** ****',
-					name: 'Name On Card',
-					expiry: '**/**',
-					cvc: '***'
-				}
+					placeholders: {
+						number: '**** **** **** ****',
+						name: 'Name On Card',
+						expiry: '**/**',
+						cvc: '***'
+					}
+				});
 			});
 		});
 		

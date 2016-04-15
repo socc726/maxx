@@ -9,7 +9,7 @@
 
     <a class="pure-menu-heading" href="#">
       <i class="fa fa-shopping-cart fa-lg"></i>
-      <component-cart-count count={this.state.shoppingcart.count}></component-cart-count>
+      <span>${this.state.shoppingcart.total}</span>
     </a>
 
     <ul class="pure-menu-list">
@@ -26,13 +26,13 @@
   </div>
 </div>
 
+<component-shoppingcart></component-shoppingcart>
 
 
 <script>
 	var actions = require('./actions.js');
 	var sharedActions = require('../shared/actions.js');
 	var riotGearActions = require('../riotgear/actions.js');
-	var creditCards = document.get
 	var store = this.opts.store;
 
 	store.subscribe(function(){
@@ -42,10 +42,7 @@
 
 	this.on('mount', function(){
 		store.dispatch(actions.createSideBar());
-		// document.getElementsByClassName("all-major-credit-cards")[0].addEventListener("click", function(event){
-		// 	event.preventDefault();
-		// window.location.href = "";
-		// });
+
 		var layout = document.getElementById('layout'),
 		    menu = document.getElementById('menu'),
 		    menuLink = document.getElementById('menuLink');

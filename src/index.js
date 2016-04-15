@@ -61,6 +61,7 @@ require('./tags/pages/shopping-cart.tag');
 require('./tags/components/component-logos.tag');
 require('./tags/components/component-hp.tag');
 require('./tags/components/component-products.tag');
+require('./tags/components/component-shoppingcart.tag');
 // todo component
 require('./tags/todo/todo-app.tag');
 require('./tags/todo/task-list.tag');

@@ -1,8 +1,16 @@
 var sharedActions = require('../shared/actions.js');
 var toggleLoading = sharedActions.toggleLoading;
+var cart = require('../../cart.js').cart;
 
 module.exports = {
-	createLogoImages: createLogoImages
+	createLogoImages: createLogoImages,
+  	getCart: getCart
+}
+
+function getCart(){
+  return function(dispatch, action){
+    dispatch(shoppingCart(cart()));
+  }
 }
 
 function createLogoImages(){
@@ -69,4 +77,8 @@ function createLogoImages(){
 
 function logoComponentCreated(images){
 	return {type: 'LOGOS_CREATED', data:images}
+}
+
+function shoppingCart(cart){
+  return {type: 'SHOPPING_CART', data:cart}
 }
