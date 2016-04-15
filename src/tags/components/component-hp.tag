@@ -48,6 +48,7 @@
 	        </div>
 	    </div>
 	</div>
+
 	<script>
 		var actions = require('./actions.js');
 		var $ = require("jquery");
@@ -79,13 +80,6 @@
 		}
 
 	</script>
-
-
-
-
-
-
-
 
 
 	<style scoped>

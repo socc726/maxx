@@ -43,7 +43,7 @@
       width:80%;
     }
     .maxx-logo{
-      width: 60%;
+      width: 30%;
       display: table;
       margin: 0 auto;
     }
