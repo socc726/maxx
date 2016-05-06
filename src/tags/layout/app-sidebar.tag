@@ -4,12 +4,13 @@
   <!-- Hamburger icon -->
   <span></span>
 </a>
-<div id="menu" class=" active">
+<div id="menu" class="active">
   <div class="pure-menu">
 
 	<a class="pure-menu-heading" id="CartIcon" href="#">
 		<i class="fa fa-shopping-cart fa-lg"></i>
 		<span>${this.state.shoppingcart.total}</span>
+
 		<component-shoppingcart cart={this.state.shoppingcart}></component-shoppingcart>
 	</a>
 
@@ -27,7 +28,6 @@
 
   </div>
 </div>
-
 
 <script>
 	var actions = require('./actions.js');
