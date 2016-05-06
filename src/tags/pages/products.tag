@@ -1,8 +1,9 @@
 <products-page>
-  <component-products products={this.state.inventory}></component-products>
+  <component-products add={addProductToCart} products={this.state.inventory}></component-products>
   <script>
 
     var actions = require('./actions.js');
+    var componentActions = require('../components/actions.js');
     var store = this._parent.opts.store;
 
     store.subscribe(function(){
@@ -15,5 +16,10 @@
     });
     this.on('umount', function(){
     });
+    addProductToCart(product){
+        console.log(product);
+        this.state.shoppingcart.post(product);
+        store.dispatch(componentActions.getCart());
+    }
   </script>
 </products-page>

@@ -7,26 +7,26 @@
 <div id="menu" class=" active">
   <div class="pure-menu">
 
-    <a class="pure-menu-heading" href="#">
-      <i class="fa fa-shopping-cart fa-lg"></i>
-      <span>${this.state.shoppingcart.total}</span>
-    </a>
+	<a class="pure-menu-heading" id="CartIcon" href="#">
+		<i class="fa fa-shopping-cart fa-lg"></i>
+		<span>${this.state.shoppingcart.total}</span>
+		<component-shoppingcart cart={this.state.shoppingcart}></component-shoppingcart>
+	</a>
 
-    <ul class="pure-menu-list">
-    	<sidebar-item links={this.state.sidebar.links} ></sidebar-item>
-    </ul>
-    <br>
-		<br>
+	<ul class="pure-menu-list">
+		<sidebar-item links={this.state.sidebar.links} ></sidebar-item>
+	</ul>
 
-		<a href="/checkout" class="all-major-credit-cards">
+	<br>
+	<br>
 
-		</a>
+	<a href="/checkout" class="all-major-credit-cards">
+	</a>
 
-		<p class="we-accept-all-cards">We accept all major credit cards.</p>
+	<p class="we-accept-all-cards">We accept all major credit cards.</p>
+
   </div>
 </div>
-
-<component-shoppingcart></component-shoppingcart>
 
 
 <script>
@@ -45,7 +45,9 @@
 
 		var layout = document.getElementById('layout'),
 		    menu = document.getElementById('menu'),
-		    menuLink = document.getElementById('menuLink');
+		    menuLink = document.getElementById('menuLink'),
+		    cartIcon = document.getElementById('CartIcon'),
+		    shoppingCart = document.getElementById('ShoppingCart');
 
 		function toggleClass(element, className) {
 		    var classes = element.className.split(/\s+/),
@@ -66,6 +68,10 @@
 		    element.className = classes.join(' ');
 		}
 
+		function hasClass(element, cls) {
+		    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+		}
+
 		menuLink.onclick = function(e) {
 		    var active = 'active';
 
@@ -73,7 +79,17 @@
 		    toggleClass(layout, active);
 		    toggleClass(menu, active);
 		    toggleClass(menuLink, active);
-		};
+		}
+
+		function activeToggle(e){
+			var active = 'active';
+			e.preventDefault();
+			toggleClass(shoppingCart, active);
+		}
+
+		cartIcon.onclick = function(e){
+			activeToggle(e);
+		}
 	});
 </script>
 <style scoped>

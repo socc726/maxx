@@ -4,13 +4,24 @@ var cart = require('../../cart.js').cart;
 
 module.exports = {
 	createLogoImages: createLogoImages,
-  	getCart: getCart
+  getCart: getCart,
+  emptyCart: emptyCart
 }
 
 function getCart(){
   return function(dispatch, action){
     dispatch(shoppingCart(cart()));
   }
+}
+function emptyCart(){
+	return function(dispatch, action){
+		cart().clear()
+		dispatch(shoppingCart(cart()));
+	}
+}
+function shoppingCart(cart){
+	console.log(cart);
+  return {type: 'SHOPPING_CART', data:cart}
 }
 
 function createLogoImages(){
@@ -77,8 +88,4 @@ function createLogoImages(){
 
 function logoComponentCreated(images){
 	return {type: 'LOGOS_CREATED', data:images}
-}
-
-function shoppingCart(cart){
-  return {type: 'SHOPPING_CART', data:cart}
 }

@@ -1,23 +1,33 @@
 <component-products class="container container--medium">  
   <div class="pure-g">
     <div class="pure-u-1-3" each={product in this.opts.products}>
-
+    
       <div class="image-wrapper overlay-fade-in">
         
-        <img src="{product.images[0]}/resize/250" />
+        <img src="{product.images[0]}/resize/250" class="pure-img"/>
         
         <div class="image-overlay-content">
           <h2>{product.name}</h2>
           <p class="price">${product.retailPrice}</p>
-          <a href="#" class="button">Get it</a>
+          <button class="button" onclick={addProduct}>Get it</button>
         </div>
       
       </div>
     
     </div>
       
-  </div>
+  </div>    
+  <script>
+    addProduct(e){
+        var product = e.item.product;
+        this.opts.add(product)
+    }
+
+  </script>
   <style scoped>
+    img.pure-img{
+        margin: 0 auto;
+    }
     .image-wrapper {
         width: 100%;
         height: 100%;
@@ -26,6 +36,7 @@
         position: relative;
         text-align: center;
         border-radius: 4px;
+        cursor: pointer;
     }
     .image-overlay-content {
         width: 100%;

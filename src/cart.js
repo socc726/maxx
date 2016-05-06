@@ -20,7 +20,8 @@ function $storage() {
     setItem: setItem,
     increaseQuantity: increaseQuantity,
     decreaseQuantity: decreaseQuantity,
-    removeItem: removeItem
+    removeItem: removeItem,
+    removeItems: removeItems
   };
 
   return {
@@ -39,6 +40,9 @@ function $storage() {
     'remove': function(id){
       return core.removeItem(id);
     },
+    'clear': function(){
+      return core.removeItems();
+    },
     'products': products(),
     'total': calculateTotal()
   }
@@ -56,13 +60,14 @@ function setItem(item){
   var exists = false;
 
   for (var i = 0; i < cart.products.length; i++) {
-    if(cart.products[i] == item.id){
+    if(cart.products[i].id == item.id){
       cart.products[i].quantity++;
       exists =true;
     }
   }
 
   if(!exists){
+    item.quantity = 1;
     cart.products.push(item);
   }
 
@@ -96,12 +101,17 @@ function removeItem(id){
   ls.set(cartId, cart);
 }
 
+function removeItems(){
+  cart.products = [];
+  ls.set(cartId, cart); 
+}
+
 function calculateTotal(){
   var total = 0;
   for (var i = 0; i < cart.products.length; i++) {
-    total += ( cart.products[i].price * cart.products[i].quantity);
+    total += ( cart.products[i].retailPrice * cart.products[i].quantity);
   };
-  return total;
+  return parseFloat(total).toFixed(2);
 }
 
 function products(){

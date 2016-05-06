@@ -1,5 +1,5 @@
-<app-main class="grid__cell--offset-20 grid__cell--width-80">
-  <article>
+<app-main>
+  <article class="pure-u-5-5">
     <img src="./src/images/logo.jpg" class="maxx-logo" alt="">
     <h1>{ this.state.page.title }</h1>
     <p>{ this.state.page.body }</p>
@@ -34,15 +34,15 @@
 
   <style scoped>
     :scope {
-      display: block;
+/*      display: block;
       font-family: sans-serif;
       margin-right: 0;
       margin-bottom: 130px;
-      margin-left: 50px;
+      margin-left: 50px;*/
       padding: 1em;
       text-align: center;
       color: #666;
-      width:80%;
+      /*width:80%;*/
     }
     .maxx-logo{
       width: 30%;
@@ -52,12 +52,6 @@
     .page-tag{
       display: table;
       margin: 0 auto;
-    }
-    @media (min-width: 480px) {
-      :scope {
-        margin-right: 200px;
-        margin-bottom: 0;
-      }
     }
 
   </style>
