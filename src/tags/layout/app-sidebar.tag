@@ -22,10 +22,6 @@
 	</ul>
 			<br>
 	<br>
-
-	<a href="/checkout" class="all-major-credit-cards">
-	</a>
-
 	<p class="we-accept-all-cards">We accept all major credit cards.</p>
 
   </div>
@@ -120,12 +116,12 @@
 		}
 		function moveDown(){
 			move(pureMenuList)
-				.add('margin-top', shoppingCartContainer.offsetHeight + 200)
+				.add('margin-top', shoppingCartContainer.offsetHeight + 50)
 				.end();			
 		}
 		function moveUp(){
 			move(pureMenuList)
-				.sub('margin-top', shoppingCartContainer.offsetHeight + 200)
+				.sub('margin-top', shoppingCartContainer.offsetHeight + 50)
 				.end();			
 		}
 		function grow(e){
@@ -163,24 +159,7 @@
 	});
 </script>
 <style scoped>
-.all-major-credit-cards {
-    background: url('./src/images/all_major_credit_cards.png');
-    position: absolute;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    margin: 0 auto;
-    overflow: hidden;
-    bottom: 50px;
-    display: table;
-    width: 100%;
-    box-sizing: border-box;
-    opacity: .5;
-    cursor: pointer;
-}
-.all-major-credit-cards:hover {
-    opacity: 1
-}
+
 .we-accept-all-cards {
     color: white;
     text-align: center;
