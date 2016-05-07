@@ -6,6 +6,7 @@ var blaze = require('pure');
 var styles = require("./styles/styles.css");
 var layoutActions = require('./tags/layout/actions.js');
 
+
 var createStoreWithMiddleware = redux.compose(
 	redux.applyMiddleware(thunk)
 )(redux.createStore);

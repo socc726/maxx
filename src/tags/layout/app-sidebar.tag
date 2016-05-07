@@ -10,11 +10,11 @@
 	<a class="pure-menu-heading" id="CartIcon" href="#">
 		<i class="fa fa-shopping-cart fa-lg"></i>
 		<span>${this.state.shoppingcart.total}</span>
-
-		<component-shoppingcart cart={this.state.shoppingcart}></component-shoppingcart>
 	</a>
 
-	<ul class="pure-menu-list">
+		<component-shoppingcart id="ShoppingCart" class="animated" cart={this.state.shoppingcart}></component-shoppingcart>
+
+	<ul class="pure-menu-list" id="PML">
 		<sidebar-item links={this.state.sidebar.links} ></sidebar-item>
 	</ul>
 
@@ -34,7 +34,7 @@
 	var sharedActions = require('../shared/actions.js');
 	var riotGearActions = require('../riotgear/actions.js');
 	var store = this.opts.store;
-
+	var move = require('move-js');
 	store.subscribe(function(){
 		this.state = store.getState();
 		this.update();
@@ -47,7 +47,9 @@
 		    menu = document.getElementById('menu'),
 		    menuLink = document.getElementById('menuLink'),
 		    cartIcon = document.getElementById('CartIcon'),
-		    shoppingCart = document.getElementById('ShoppingCart');
+		    pureMenuList = document.getElementById('PML'),
+		    shoppingCart = document.getElementById('ShoppingCart'),
+		    shoppingCartContainer = document.getElementById('ShoppingCartContainer');
 
 		function toggleClass(element, className) {
 		    var classes = element.className.split(/\s+/),
@@ -68,8 +70,26 @@
 		    element.className = classes.join(' ');
 		}
 
-		function hasClass(element, cls) {
-		    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+		function hasClass(el, className) {
+		  if (el.classList)
+		    return el.classList.contains(className)
+		  else
+		    return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+		}
+
+		function addClass(el, className) {
+		  if (el.classList)
+		    el.classList.add(className)
+		  else if (!hasClass(el, className)) el.className += " " + className
+		}
+
+		function removeClass(el, className) {
+		  if (el.classList)
+		    el.classList.remove(className)
+		  else if (hasClass(el, className)) {
+		    var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+		    el.className=el.className.replace(reg, ' ')
+		  }
 		}
 
 		menuLink.onclick = function(e) {
@@ -81,14 +101,58 @@
 		    toggleClass(menuLink, active);
 		}
 
-		function activeToggle(e){
-			var active = 'active';
+		function fadeInOut(e){
 			e.preventDefault();
-			toggleClass(shoppingCart, active);
+			console.log(e);
+			if(hasClass(e.target.parentNode.nextElementSibling, 'fadeIn')){
+				removeClass(shoppingCart, 'fadeIn');
+				addClass(shoppingCart, 'fadeOut');
+				return;
+			}
+			if(hasClass(e.target.parentNode.nextElementSibling, 'fadeOut')){
+				removeClass(shoppingCart, 'fadeOut');
+				addClass(shoppingCart, 'fadeIn');
+				return;
+			}
+			addClass(shoppingCart, 'fadeIn');
 		}
+		function moveDown(){
+			move(pureMenuList)
+				.add('margin-top', shoppingCartContainer.offsetHeight)
+				.end();			
+		}
+		function moveUp(){
+			move(pureMenuList)
+				.sub('margin-top', shoppingCartContainer.offsetHeight)
+				.end();			
+		}
+		function grow(e){
+			e.preventDefault();
+			if(hasClass(e.target.parentNode.parentNode.children[2], 'slideOutDown')){
 
+				removeClass(pureMenuList, 'slideOutDown');
+				addClass(pureMenuList, 'slideOutUp');
+				return;
+			}
+			if(hasClass(e.target.parentNode.parentNode.children[2], 'slideOutUp')){
+				removeClass(pureMenuList, 'slideOutUp');
+				addClass(pureMenuList, 'slideOutDown');
+				return;
+			}
+			addClass(pureMenuList, 'slideOutDown');
+		}
+		var a = 0;
 		cartIcon.onclick = function(e){
-			activeToggle(e);
+			console.dir(shoppingCartContainer);
+			if(a == 0){
+				a = 1;
+				moveDown();
+			}else{
+				a = 0;
+				moveUp();
+			}
+			toggleClass(shoppingCart, 'active');
+			fadeInOut(e);
 		}
 	});
 </script>
@@ -126,6 +190,14 @@
 }
 @media (min-width: 480px) {
     .we-accept-all-cards {}
+}
+#ShoppingCart{
+		display: block;
+		position: absolute;
+		visibility: hidden;
+}
+#ShoppingCart.active{
+	visibility: visible;
 }
 </style>
 </app-sidebar>
