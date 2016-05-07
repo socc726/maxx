@@ -8,8 +8,11 @@
   <div class="pure-menu">
 
 	<a class="pure-menu-heading" id="CartIcon" href="#">
-		<i class="fa fa-shopping-cart fa-lg"></i>
-		<span>${this.state.shoppingcart.total}</span>
+
+		<i class="fa fa-shopping-cart fa-lg">
+			<i class="cart-item-quantity">{this.state.shoppingcart.quantity}</i>
+		</i>
+		<span class="cart-total">${this.state.shoppingcart.total}</span>
 	</a>
 
 		<component-shoppingcart id="ShoppingCart" class="animated	hidden" cart={this.state.shoppingcart}></component-shoppingcart>
@@ -17,8 +20,7 @@
 	<ul class="pure-menu-list" id="PML">
 		<sidebar-item links={this.state.sidebar.links} ></sidebar-item>
 	</ul>
-
-	<br>
+			<br>
 	<br>
 
 	<a href="/checkout" class="all-major-credit-cards">
@@ -118,12 +120,12 @@
 		}
 		function moveDown(){
 			move(pureMenuList)
-				.add('margin-top', shoppingCartContainer.offsetHeight)
+				.add('margin-top', shoppingCartContainer.offsetHeight + 200)
 				.end();			
 		}
 		function moveUp(){
 			move(pureMenuList)
-				.sub('margin-top', shoppingCartContainer.offsetHeight)
+				.sub('margin-top', shoppingCartContainer.offsetHeight + 200)
 				.end();			
 		}
 		function grow(e){
@@ -163,15 +165,14 @@
 <style scoped>
 .all-major-credit-cards {
     background: url('./src/images/all_major_credit_cards.png');
-    height: 13%;
+    position: absolute;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     margin: 0 auto;
     overflow: hidden;
-    position: absolute;
     bottom: 50px;
-    left: 0;
+    display: table;
     width: 100%;
     box-sizing: border-box;
     opacity: .5;
@@ -188,9 +189,32 @@
     right: 0;
     margin: 0;
     padding: 20px 0 10px;
-    position: absolute;
     text-transform: uppercase;
     font-size: 9px;
+}
+#menu .pure-menu-selected, #menu .pure-menu-heading{
+	background: #191818;
+}
+.fa-shopping-cart{
+	position: relative;
+}
+.cart-total{
+	padding-left: 25px;
+	color:#51C15F;
+}
+.cart-item-quantity{
+	font-family: sans-serif;
+	position: absolute;
+	color: white;
+	left: 19px;
+	top: -14px;
+	background: #D65B5B;
+	border-radius: 84px;
+	padding: 1px 3px;
+	width:12px;
+	text-align: center;
+	font-size: 10px;
+
 }
 @media (min-width: 480px) {
     .we-accept-all-cards {}
@@ -201,7 +225,7 @@
 #ShoppingCart{
 		display: block;
 		position: absolute;
-		top:30px;
+		top:50px;
 }
 #ShoppingCart.active{
 	visibility: visible;

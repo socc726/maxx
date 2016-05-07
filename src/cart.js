@@ -44,7 +44,8 @@ function $storage() {
       return core.removeItems();
     },
     'products': products(),
-    'total': calculateTotal()
+    'total': calculateTotal(),
+    'quantity': calculateQuantity()
   }
 }
 
@@ -112,6 +113,14 @@ function calculateTotal(){
     total += ( cart.products[i].retailPrice * cart.products[i].quantity);
   };
   return parseFloat(total).toFixed(2);
+}
+
+function calculateQuantity(){
+  var quantity = 0;
+  for (var i = 0; i < cart.products.length; i++) {
+    quantity += cart.products[i].quantity;
+  };
+  return quantity;
 }
 
 function products(){
