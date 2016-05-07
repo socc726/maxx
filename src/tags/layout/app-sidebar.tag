@@ -12,7 +12,7 @@
 		<span>${this.state.shoppingcart.total}</span>
 	</a>
 
-		<component-shoppingcart id="ShoppingCart" class="animated" cart={this.state.shoppingcart}></component-shoppingcart>
+		<component-shoppingcart id="ShoppingCart" class="animated	hidden" cart={this.state.shoppingcart}></component-shoppingcart>
 
 	<ul class="pure-menu-list" id="PML">
 		<sidebar-item links={this.state.sidebar.links} ></sidebar-item>
@@ -104,17 +104,17 @@
 		function fadeInOut(e){
 			e.preventDefault();
 			console.log(e);
-			if(hasClass(e.target.parentNode.nextElementSibling, 'fadeIn')){
-				removeClass(shoppingCart, 'fadeIn');
-				addClass(shoppingCart, 'fadeOut');
+			if(hasClass(shoppingCart, 'fadeInDown')){
+				removeClass(shoppingCart, 'fadeInDown');
+				addClass(shoppingCart, 'fadeOutUpBig');
 				return;
 			}
-			if(hasClass(e.target.parentNode.nextElementSibling, 'fadeOut')){
-				removeClass(shoppingCart, 'fadeOut');
-				addClass(shoppingCart, 'fadeIn');
+			if(hasClass(shoppingCart, 'fadeOutUpBig')){
+				removeClass(shoppingCart, 'fadeOutUpBig');
+				addClass(shoppingCart, 'fadeInDown');
 				return;
 			}
-			addClass(shoppingCart, 'fadeIn');
+			addClass(shoppingCart, 'fadeInDown');
 		}
 		function moveDown(){
 			move(pureMenuList)
@@ -144,6 +144,10 @@
 		var a = 0;
 		cartIcon.onclick = function(e){
 			console.dir(shoppingCartContainer);
+			if(hasClass(shoppingCart, 'hidden')){
+				removeClass(shoppingCart, 'hidden');
+			}
+			
 			if(a == 0){
 				a = 1;
 				moveDown();
@@ -191,10 +195,13 @@
 @media (min-width: 480px) {
     .we-accept-all-cards {}
 }
+#ShoppingCart.hidden{
+	visibility: hidden;
+}
 #ShoppingCart{
 		display: block;
 		position: absolute;
-		visibility: hidden;
+		top:30px;
 }
 #ShoppingCart.active{
 	visibility: visible;

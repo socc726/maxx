@@ -257,8 +257,8 @@ Hides the menu at `48em`, but modify this based on your app's needs.
  */
 
 .animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: .7s;
+  animation-duration: .7s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
@@ -1958,6 +1958,7 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 
   to {
     opacity: 0;
+    visibility: hidden;
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
@@ -1970,8 +1971,9 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 
   to {
     opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
+    visibility: hidden;
+    -webkit-transform: translate3d(0, -90%, 0);
+    transform: translate3d(0, -90%, 0);
   }
 }
 
