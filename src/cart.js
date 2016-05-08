@@ -69,6 +69,7 @@ function setItem(item){
 
   if(!exists){
     item.quantity = 1;
+    item.retailPrice = item.retailPrice.formatMoney(2, '.', ',');
     cart.products.push(item);
   }
 
@@ -112,7 +113,7 @@ function calculateTotal(){
   for (var i = 0; i < cart.products.length; i++) {
     total += ( cart.products[i].retailPrice * cart.products[i].quantity);
   };
-  return parseFloat(total).toFixed(2);
+  return total.formatMoney(2, '.', ',');
 }
 
 function calculateQuantity(){
@@ -126,3 +127,14 @@ function calculateQuantity(){
 function products(){
   return cart.products;
 }
+
+Number.prototype.formatMoney = function(c, d, t){
+    var n = this, 
+    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+    d = d == undefined ? "." : d, 
+    t = t == undefined ? "," : t, 
+    s = n < 0 ? "-" : "", 
+    i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
+    j = (j = i.length) > 3 ? j % 3 : 0;
+   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+ };

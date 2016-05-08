@@ -10,8 +10,8 @@
 	<a class="pure-menu-heading" id="CartIcon" href="#">
 
 		<i class="fa fa-shopping-cart fa-lg">
-			<i class="cart-item-quantity">{this.state.shoppingcart.quantity}</i>
 		</i>
+			<span class="cart-item-quantity">{this.state.shoppingcart.quantity}</span>
 		<span class="cart-total">${this.state.shoppingcart.total}</span>
 	</a>
 
@@ -173,26 +173,28 @@
 }
 #menu .pure-menu-selected, #menu .pure-menu-heading{
 	background: #191818;
+	position: relative;
 }
 .fa-shopping-cart{
 	position: relative;
+	color: #E0E0E0;
 }
 .cart-total{
-	padding-left: 25px;
-	color:#51C15F;
+  position: absolute;
+  right: 14px;
+	color: #4E9455;
 }
 .cart-item-quantity{
-	font-family: sans-serif;
-	position: absolute;
-	color: white;
-	left: 19px;
-	top: -14px;
-	background: #D65B5B;
-	border-radius: 84px;
-	padding: 1px 3px;
-	width:12px;
-	text-align: center;
-	font-size: 10px;
+		position: absolute;
+    left: 23px;
+    top: 6px;
+    background: rgba(32, 61, 108, 0.88);
+    border-radius: 84px;
+    padding: 4px 4px;
+    font-size: 10px;
+    color: white;
+    width: 12px;
+    text-align: center;
 
 }
 @media (min-width: 480px) {

@@ -3,18 +3,22 @@
 	
 	<div class="shopping-cart" id="ShoppingCartContainer">
 	    <div class="cart-product" each={product in this.opts.cart.products}>
-
+	    		<i class="fa fa-minus quantity-minus" aria-hidden="true"></i>
+					<span class="quantity">{product.quantity}</span>
+					<i class="fa fa-plus quantity-plus" aria-hidden="true"></i>
 	        <img src="{product.images[0]}/resize/90" class="pure-img"/>
 	        
 	          <h2>{product.name}</h2>
 	          <p class="price">${product.retailPrice}</p>
+						<i class="fa fa-recycle" aria-hidden="true"></i>
 	    </div>
+
+			<button class="button-error pure-button" onclick={emptyCart}>Clear Items</button>
 	    <div>
 				<a href="/checkout" class="all-major-credit-cards">
 				</a>
 	    </div>
 	</div>
-		<button onclick={emptyCart}>Clear Items</button>
 
 	<script>
 		var actions = require('./actions.js');
@@ -37,24 +41,67 @@
 	</script>
 	<style>
 	.cart-product{
-		    margin: 10px;
+		margin: 10px;
     background: white;
     padding: 10px;
+    position: relative;
     border-radius: 5px;
 	}
+	.cart-product .quantity{
+		position: absolute;
+    left: 23px;
+    top: 6px;
+    background: rgba(32, 61, 108, 0.88);
+    border-radius: 84px;
+    padding: 4px 4px;
+    font-size: 10px;
+    color: white;
+    width: 12px;
+    text-align: center;
+	}
+	.fa-recycle{
+		font-size: 18px;
+    cursor: pointer;
+    color: #3370CE;
+    position: absolute;
+    top: 52px;
+    left: 2px;
+	}
+	.cart-product .quantity-plus, .cart-product .quantity-minus{
+		cursor: pointer;
+    position: absolute;
+		left: 4px;
+	}
+	.cart-product .quantity-plus{
+		color:rgb(28, 184, 65);
+    top: 10px;
+	}
+	.cart-product .quantity-minus{
+		color:rgb(202, 60, 60);
+		top: 31px;
+	}
 	.cart-product img{
-		    max-width: 100%;
+		max-width: 100%;
     height: auto;
     display: block;
     text-align: center;
-    margin: 0 auto;
+    margin: 20px auto 0;
 	}
 	.cart-product h2{
 		font-size: 12px;
     text-align: center;
+    text-decoration: underline;;
+    cursor: pointer;
 	}
 	.cart-product p{
 		text-align: center;
+		margin: 0;
+	}
+	.cart-product .price{
+		color:#4E9455;
+		position: absolute;
+    top: 7px;
+    right: 6px;
 	}
 	#menu a.all-major-credit-cards {
     background: url('./src/images/all_major_credit_cards.png');
