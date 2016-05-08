@@ -5,7 +5,10 @@ var cart = require('../../cart.js').cart;
 module.exports = {
 	createLogoImages: createLogoImages,
   getCart: getCart,
-  emptyCart: emptyCart
+  emptyCart: emptyCart,
+  minus: minus,
+  plus: plus,
+  recycle: recycle
 }
 
 function getCart(){
@@ -16,6 +19,24 @@ function getCart(){
 function emptyCart(){
 	return function(dispatch, action){
 		cart().clear()
+		dispatch(shoppingCart(cart()));
+	}
+}
+function minus(id){
+	return function(dispatch, action){
+		cart().subtract(id);
+		dispatch(shoppingCart(cart()));
+	}
+}
+function plus(id){
+	return function(dispatch, action){
+		cart().add(id);
+		dispatch(shoppingCart(cart()));
+	}
+}
+function recycle(id){
+	return function(dispatch, action){
+		cart().remove(id);
 		dispatch(shoppingCart(cart()));
 	}
 }

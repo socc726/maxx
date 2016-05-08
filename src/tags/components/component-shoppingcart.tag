@@ -3,14 +3,14 @@
 	
 	<div class="shopping-cart" id="ShoppingCartContainer">
 	    <div class="cart-product" each={product in this.opts.cart.products}>
-	    		<i class="fa fa-minus quantity-minus" aria-hidden="true"></i>
+	    		<i class="fa fa-minus quantity-minus" aria-hidden="true" onclick={minusItem}></i>
 					<span class="quantity">{product.quantity}</span>
-					<i class="fa fa-plus quantity-plus" aria-hidden="true"></i>
+					<i class="fa fa-plus quantity-plus" aria-hidden="true" onclick={plusItem}></i>
 	        <img src="{product.images[0]}/resize/90" class="pure-img"/>
 	        
 	          <h2>{product.name}</h2>
 	          <p class="price">${product.retailPrice}</p>
-						<i class="fa fa-recycle" aria-hidden="true"></i>
+						<i class="fa fa-recycle" aria-hidden="true" onclick={recycleItem}></i>
 	    </div>
 
 			<button class="button-error pure-button" onclick={emptyCart}>Clear Items</button>
@@ -37,7 +37,18 @@
 		emptyCart(){
 			store.dispatch(actions.emptyCart());
 		}
+
+		minusItem(e){
+			store.dispatch(actions.minus(e.item.product.id));
+		}
+
+		plusItem(e){
+			store.dispatch(actions.plus(e.item.product.id));
+		}
 		
+		recycleItem(e){
+			store.dispatch(actions.recycle(e.item.product.id));
+		}
 	</script>
 	<style>
 	.cart-product{
@@ -101,7 +112,7 @@
 		color:#4E9455;
 		position: absolute;
     top: 7px;
-    right: 6px;
+    right: 5px;
 	}
 	#menu a.all-major-credit-cards {
     background: url('./src/images/all_major_credit_cards.png');

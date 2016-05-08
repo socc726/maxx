@@ -78,7 +78,7 @@ function setItem(item){
 
 function increaseQuantity(id){
   for (var i = 0; i < cart.products.length; i++) {
-    if(cart.products[i] == id){
+    if(cart.products[i].id == id){
       cart.products[i].quantity++;
     }
   }
@@ -87,7 +87,11 @@ function increaseQuantity(id){
 
 function decreaseQuantity(id){
   for (var i = 0; i < cart.products.length; i++) {
-    if(cart.products[i] == id){
+    if(cart.products[i].id == id){
+      if(cart.products[i].quantity == 1){
+        removeItemByIndex(i);
+        return;
+      }
       cart.products[i].quantity--;
     }
   }
@@ -96,13 +100,16 @@ function decreaseQuantity(id){
 
 function removeItem(id){
   for (var i = 0; i < cart.products.length; i++) {
-    if(cart.products[i] == id){
+    if(cart.products[i].id == id){
       cart.products.splice(i, 1);
     }
   }
   ls.set(cartId, cart);
 }
-
+function removeItemByIndex(index){
+  cart.products.splice(index, 1);
+  ls.set(cartId, cart);
+}
 function removeItems(){
   cart.products = [];
   ls.set(cartId, cart); 

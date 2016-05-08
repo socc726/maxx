@@ -26,7 +26,7 @@ body {
 .button-error {
   background: rgb(202, 60, 60); /* this is a maroon */
   color:white;
-  margin:0 auto;
+  margin:40px auto 0;
   display: table;
 }
 /*

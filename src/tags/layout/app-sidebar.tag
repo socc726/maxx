@@ -174,6 +174,7 @@
 #menu .pure-menu-selected, #menu .pure-menu-heading{
 	background: #191818;
 	position: relative;
+	z-index: 999999999;
 }
 .fa-shopping-cart{
 	position: relative;
