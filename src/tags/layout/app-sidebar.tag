@@ -20,7 +20,7 @@
 	<ul class="pure-menu-list" id="PML">
 		<sidebar-item links={this.state.sidebar.links} ></sidebar-item>
 	</ul>
-			<br>
+	<br>
 	<br>
 	<p class="we-accept-all-cards">We accept all major credit cards.</p>
 
@@ -114,16 +114,7 @@
 			}
 			addClass(shoppingCart, 'fadeInDown');
 		}
-		function moveDown(){
-			move(pureMenuList)
-				.add('margin-top', shoppingCartContainer.offsetHeight + 50)
-				.end();			
-		}
-		function moveUp(){
-			move(pureMenuList)
-				.sub('margin-top', shoppingCartContainer.offsetHeight + 50)
-				.end();			
-		}
+
 		function grow(e){
 			e.preventDefault();
 			if(hasClass(e.target.parentNode.parentNode.children[2], 'slideOutDown')){

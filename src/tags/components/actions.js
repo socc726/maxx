@@ -8,7 +8,8 @@ module.exports = {
   emptyCart: emptyCart,
   minus: minus,
   plus: plus,
-  recycle: recycle
+  recycle: recycle,
+  growCart: growCart
 }
 
 function getCart(){
@@ -40,10 +41,26 @@ function recycle(id){
 		dispatch(shoppingCart(cart()));
 	}
 }
+
+function growCart(direction){
+	return function(dispatch, action){
+		if(direction == 'UP'){
+			cart().moveUp();
+		}
+		
+		if(direction == 'DOWN'){
+			cart().moveDown();
+		}
+
+		dispatch(shoppingCart(cart()));
+	}
+}
+
 function shoppingCart(cart){
 	console.log(cart);
   return {type: 'SHOPPING_CART', data:cart}
 }
+
 
 function createLogoImages(){
 	return function(dispatch, action){

@@ -2,7 +2,7 @@
 
 	
 	<div class="shopping-cart" id="ShoppingCartContainer">
-	    <div class="cart-product" each={product in this.opts.cart.products}>
+	    <div class="cart-product animated zoomIn" each={product in this.opts.cart.products}>
 	    		<i class="fa fa-minus quantity-minus" aria-hidden="true" onclick={minusItem}></i>
 					<span class="quantity">{product.quantity}</span>
 					<i class="fa fa-plus quantity-plus" aria-hidden="true" onclick={plusItem}></i>
@@ -12,12 +12,12 @@
 	          <p class="price">${product.retailPrice}</p>
 						<i class="fa fa-recycle" aria-hidden="true" onclick={recycleItem}></i>
 	    </div>
-
-			<button class="button-error pure-button" onclick={emptyCart}>Clear Items</button>
 	    <div>
 				<a href="/checkout" class="all-major-credit-cards">
 				</a>
 	    </div>
+			<button class="button-error pure-button" onclick={emptyCart}>Clear Items</button>
+
 	</div>
 
 	<script>

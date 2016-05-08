@@ -28,6 +28,7 @@ body {
   color:white;
   margin:40px auto 0;
   display: table;
+  width:90%;
 }
 /*
 Add transition to containers so they can push in and out.

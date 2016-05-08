@@ -3,9 +3,11 @@ module.exports = {
 }
 
 var ls = require('local-storage');
+var move = require('move-js');
 var cartId = 'MAXXCART';
 var cart = ls.get(cartId);
-
+var pureMenuList = document.getElementById('PML'),
+var shoppingCart = document.getElementById('ShoppingCartContainer'),
 
 function $storage() {
 
@@ -21,7 +23,9 @@ function $storage() {
     increaseQuantity: increaseQuantity,
     decreaseQuantity: decreaseQuantity,
     removeItem: removeItem,
-    removeItems: removeItems
+    removeItems: removeItems,
+    moveUp: moveUp,
+    moveDown: moveDown
   };
 
   return {
@@ -42,6 +46,12 @@ function $storage() {
     },
     'clear': function(){
       return core.removeItems();
+    },
+    'moveUp': function(){
+      return core.moveUp();
+    },
+    'moveDown': function(){
+      return core.moveDown();
     },
     'products': products(),
     'total': calculateTotal(),
@@ -106,10 +116,12 @@ function removeItem(id){
   }
   ls.set(cartId, cart);
 }
+
 function removeItemByIndex(index){
   cart.products.splice(index, 1);
   ls.set(cartId, cart);
 }
+
 function removeItems(){
   cart.products = [];
   ls.set(cartId, cart); 
@@ -133,6 +145,18 @@ function calculateQuantity(){
 
 function products(){
   return cart.products;
+}
+
+function moveDown(){
+  move(pureMenuList)
+    .add('margin-top', shoppingCartContainer.offsetHeight + 50)
+    .end();     
+}
+
+function moveUp(){
+  move(pureMenuList)
+    .sub('margin-top', shoppingCartContainer.offsetHeight + 50)
+    .end();     
 }
 
 Number.prototype.formatMoney = function(c, d, t){
