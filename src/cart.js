@@ -6,8 +6,8 @@ var ls = require('local-storage');
 var move = require('move-js');
 var cartId = 'MAXXCART';
 var cart = ls.get(cartId);
-var pureMenuList = document.getElementById('PML'),
-var shoppingCart = document.getElementById('ShoppingCartContainer'),
+var pureMenuList = document.getElementById('PML');
+var shoppingCart = document.getElementById('ShoppingCartContainer');
 
 function $storage() {
 
