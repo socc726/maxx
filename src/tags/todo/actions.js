@@ -11,7 +11,6 @@ module.exports = {
 
 function loadTasks(){
 	return function(dispatch, getState){
-		console.log(getState());
 		dispatch(toggleLoading(true));
 
 		var request = {

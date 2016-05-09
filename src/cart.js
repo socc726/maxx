@@ -6,8 +6,6 @@ var ls = require('local-storage');
 var move = require('move-js');
 var cartId = 'MAXXCART';
 var cart = ls.get(cartId);
-var pureMenuList = document.getElementById('PML');
-var shoppingCart = document.getElementById('ShoppingCartContainer');
 
 function $storage() {
 
@@ -84,6 +82,7 @@ function setItem(item){
   }
 
   ls.set(cartId, cart);
+  moveDown();
 }
 
 function increaseQuantity(id){
@@ -148,14 +147,24 @@ function products(){
 }
 
 function moveDown(){
+  
+  var pureMenuList = document.getElementById('PML');
+  var shoppingCart = document.getElementById('ShoppingCartContainer');
+  var cartItem = document.getElementsByClassName('cart-product')[0];
+  var height = 0;
+  if(cartItem == null){
+    height = 240;
+  }else{
+    height = cartItem.offsetHeight + 10;
+  }
   move(pureMenuList)
-    .add('margin-top', shoppingCartContainer.offsetHeight + 50)
+    .add('margin-top', height)
     .end();     
 }
 
 function moveUp(){
   move(pureMenuList)
-    .sub('margin-top', shoppingCartContainer.offsetHeight + 50)
+    .sub('margin-top', shoppingCart.offsetHeight + 50 + cartItem.offsetHeight)
     .end();     
 }
 

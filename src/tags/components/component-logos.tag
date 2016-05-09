@@ -15,7 +15,6 @@
 
 		this.on('mount', function(){
 			store.dispatch(actions.createLogoImages());
-			console.log(this);
 		});
 	</script>
 	<style scoped>

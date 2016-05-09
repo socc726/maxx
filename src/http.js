@@ -10,7 +10,7 @@ function $http(functionsToCall) {
   var core = {
     ajax: makeHttpRequest,
 	success: function(data){
-		console.log(1, 'success', JSON.parse(data));
+		// console.log(1, 'success', JSON.parse(data));
 		functionIndex++;
 		if((functionIndex + 1) > functionsToCall.length){
 		return;
@@ -21,7 +21,7 @@ function $http(functionsToCall) {
 		callFunction(functionsToCall[functionIndex], valuesToArray(data));
 	},
 	error : function(err){
-		console.log(2, 'error', err);
+		// console.log(2, 'error', err);
 	}
   };
 

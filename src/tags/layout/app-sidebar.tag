@@ -101,7 +101,6 @@
 
 		function fadeInOut(e){
 			e.preventDefault();
-			console.log(e);
 			if(hasClass(shoppingCart, 'fadeInDown')){
 				removeClass(shoppingCart, 'fadeInDown');
 				addClass(shoppingCart, 'fadeOutUpBig');
@@ -114,7 +113,16 @@
 			}
 			addClass(shoppingCart, 'fadeInDown');
 		}
-
+		function moveDown(){
+			move(pureMenuList)
+				.add('margin-top', shoppingCartContainer.offsetHeight + 50)
+				.end();			
+		}
+		function moveUp(){
+			move(pureMenuList)
+				.sub('margin-top', shoppingCartContainer.offsetHeight + 50)
+				.end();			
+		}
 		function grow(e){
 			e.preventDefault();
 			if(hasClass(e.target.parentNode.parentNode.children[2], 'slideOutDown')){
@@ -132,7 +140,6 @@
 		}
 		var a = 0;
 		cartIcon.onclick = function(e){
-			console.dir(shoppingCartContainer);
 			if(hasClass(shoppingCart, 'hidden')){
 				removeClass(shoppingCart, 'hidden');
 			}

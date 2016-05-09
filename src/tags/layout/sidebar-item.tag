@@ -1,6 +1,6 @@
 <sidebar-item>
   <li class="pure-menu-item" each={link in this.opts.links}>
-    <a class="pure-menu-link"  href="/{link.url}">
+    <a class="pure-menu-link"  href="/#/{link.url}">
       {link.name}
     </a>
   </li>

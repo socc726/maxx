@@ -32,14 +32,15 @@ riot.route(function(collection,id,action){
 	if(!collection){
 		reduxStore.dispatch(layoutActions.createHomePage());
 	}
-	console.log("ROUTE CHANGE" + id);
 });
 
 document.addEventListener('DOMContentLoaded', function(){
-	riot.mount('app-sidebar', {store:reduxStore});
-	riot.mount('app-main', {store:reduxStore});
-	riot.route.base('/');
-	riot.route.start(true);
+	riot.compile(function() {
+		riot.mount('app-sidebar', {store:reduxStore});
+		riot.mount('app-main', {store:reduxStore});
+		riot.route.base('/#');
+		riot.route.start(true);
+	});
 });
 
 // layouts

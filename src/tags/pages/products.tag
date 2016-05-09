@@ -17,7 +17,6 @@
     this.on('umount', function(){
     });
     addProductToCart(product){
-        console.log(product);
         this.state.shoppingcart.post(product);
         store.dispatch(componentActions.getCart());
     }

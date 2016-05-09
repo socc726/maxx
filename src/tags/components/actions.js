@@ -47,7 +47,7 @@ function growCart(direction){
 		if(direction == 'UP'){
 			cart().moveUp();
 		}
-		
+
 		if(direction == 'DOWN'){
 			cart().moveDown();
 		}
@@ -57,7 +57,6 @@ function growCart(direction){
 }
 
 function shoppingCart(cart){
-	console.log(cart);
   return {type: 'SHOPPING_CART', data:cart}
 }
 

@@ -25,7 +25,6 @@
 		}.bind(this));
 
 		this.on('mount', function(){
-			console.log('baker');
 			store.dispatch(actions.createSignInRequest());
 		});
 
@@ -54,8 +53,5 @@
 				store.dispatch(actions.submitPayment(id,isComplete));
 			}
 		}
-		this.on('umount', function(){
-			console.log('freshbt')
-		});
 	</script>
 </checkout-page>

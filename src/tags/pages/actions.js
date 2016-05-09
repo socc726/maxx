@@ -198,6 +198,5 @@ function hostedResponse(response){
 	return {type:'HOSTED_RESPONSE', data:response};
 }
 function inventoryResponse(response){
-	console.log(response);
 	return {type:'INVENTORY_RESPONSE', data:response.items};
 }

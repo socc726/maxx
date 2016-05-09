@@ -60,7 +60,7 @@
 			this.state = store.getState();
 			this.update();
 		}.bind(this));
-		console.log(this);
+		
 		this.on('mount', function(){
 			$( document ).ready(function() {
 				var card = new Card({
