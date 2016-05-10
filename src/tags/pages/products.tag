@@ -1,5 +1,5 @@
 <products-page>
-  <component-products add={addProductToCart} products={this.state.inventory}></component-products>
+  <component-products exists={exists} movedown={moveDown} add={addProductToCart} products={this.state.inventory}></component-products>
   <script>
 
     var actions = require('./actions.js');
@@ -14,11 +14,15 @@
     this.on('mount', function(){
       store.dispatch(actions.getProductsFromInventory());
     });
-    this.on('umount', function(){
-    });
-    addProductToCart(product){
-        this.state.shoppingcart.post(product);
+    exists(id){
+      return this.state.shoppingcart.exists(id);
+    }
+    addProductToCart(product, height){
+        this.state.shoppingcart.post(product, height);
         store.dispatch(componentActions.getCart());
+    }
+    moveDown(height){
+      this.state.shoppingcart.moveDown(height);
     }
   </script>
 </products-page>

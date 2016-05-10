@@ -13,7 +13,7 @@
 						<i class="fa fa-recycle" aria-hidden="true" onclick={recycleItem}></i>
 	    </div>
 	    <div>
-				<a href="/checkout" class="all-major-credit-cards">
+				<a href="/#/checkout" class="all-major-credit-cards">
 				</a>
 	    </div>
 			<button class="button-error pure-button" onclick={emptyCart}>Clear Items</button>

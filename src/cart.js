@@ -23,10 +23,14 @@ function $storage() {
     removeItem: removeItem,
     removeItems: removeItems,
     moveUp: moveUp,
-    moveDown: moveDown
+    moveDown: moveDown,
+    exists: exists
   };
 
   return {
+    'exists' : function(id){
+      return core.exists(id);
+    },
     'get' : function(id){
       return core.getItem(id);
     },
@@ -45,11 +49,11 @@ function $storage() {
     'clear': function(){
       return core.removeItems();
     },
-    'moveUp': function(){
-      return core.moveUp();
+    'moveUp': function(height){
+      return core.moveUp(height);
     },
-    'moveDown': function(){
-      return core.moveDown();
+    'moveDown': function(height){
+      return core.moveDown(height);
     },
     'products': products(),
     'total': calculateTotal(),
@@ -84,7 +88,14 @@ function setItem(item){
   ls.set(cartId, cart);
   moveDown();
 }
-
+function exists(id){
+  for (var i = 0; i < cart.products.length; i++) {
+    if(cart.products[i].id == id){
+      return true;
+    }
+  }
+  return false;
+}
 function increaseQuantity(id){
   for (var i = 0; i < cart.products.length; i++) {
     if(cart.products[i].id == id){
@@ -146,25 +157,17 @@ function products(){
   return cart.products;
 }
 
-function moveDown(){
-  
+function moveDown(height){
   var pureMenuList = document.getElementById('PML');
-  var shoppingCart = document.getElementById('ShoppingCartContainer');
-  var cartItem = document.getElementsByClassName('cart-product')[0];
-  var height = 0;
-  if(cartItem == null){
-    height = 240;
-  }else{
-    height = cartItem.offsetHeight + 10;
-  }
   move(pureMenuList)
     .add('margin-top', height)
     .end();     
 }
 
-function moveUp(){
+function moveUp(height){
+  var pureMenuList = document.getElementById('PML');
   move(pureMenuList)
-    .sub('margin-top', shoppingCart.offsetHeight + 50 + cartItem.offsetHeight)
+    .sub('margin-top', height)
     .end();     
 }
 

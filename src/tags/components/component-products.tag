@@ -18,11 +18,44 @@
       
   </div>    
   <script>
-    addProduct(e){
-        var product = e.item.product;
-        this.opts.add(product)
+    function hasClass(el, className) {
+      if (el.classList)
+        return el.classList.contains(className)
+      else
+        return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+    }
+    animateCart(exists){
+      var shoppingCart = document.getElementById('ShoppingCart');
+
+      var cartItem = document.getElementsByClassName('cart-product')[0];
+
+      var height = 0;
+
+      console.log(height + " here is height");
+      console.log(shoppingCart.offsetHeight + " cart height");
+
+      console.log(height + " combined");
+      if(hasClass(shoppingCart, 'invisible') || hasClass(shoppingCart, 'fadeOutUpBig')){
+        height = shoppingCart.offsetHeight + 50;
+      }
+
+      if(!exists){
+        if(cartItem == null){
+          height += 187;
+        }else{
+          height += cartItem.offsetHeight + 9;
+        }
+      }
+      
+      this.opts.movedown(height);
     }
 
+    addProduct(e){
+        var product = e.item.product;
+        var doesExist = this.opts.exists(e.item.product.id);
+        this.animateCart(doesExist);
+        this.opts.add(product);console.log(this.opts);
+    }
   </script>
   <style scoped>
     img.pure-img{
