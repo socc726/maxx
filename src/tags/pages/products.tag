@@ -17,8 +17,8 @@
     exists(id){
       return this.state.shoppingcart.exists(id);
     }
-    addProductToCart(product, height){
-        this.state.shoppingcart.post(product, height);
+    addProductToCart(product){
+        this.state.shoppingcart.post(product);
         store.dispatch(componentActions.getCart());
     }
     moveDown(height){

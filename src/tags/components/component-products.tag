@@ -24,37 +24,45 @@
       else
         return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
     }
+    function removeClass(el, className) {
+      if (el.classList)
+        el.classList.remove(className)
+      else if (hasClass(el, className)) {
+        var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+        el.className=el.className.replace(reg, ' ')
+      }
+    }
     animateCart(exists){
       var shoppingCart = document.getElementById('ShoppingCart');
 
       var cartItem = document.getElementsByClassName('cart-product')[0];
-
+      var cartIcon = document.getElementById('CartIcon')
       var height = 0;
 
-      console.log(height + " here is height");
-      console.log(shoppingCart.offsetHeight + " cart height");
 
-      console.log(height + " combined");
-      if(hasClass(shoppingCart, 'invisible') || hasClass(shoppingCart, 'fadeOutUpBig')){
-        height = shoppingCart.offsetHeight + 50;
-      }
 
       if(!exists){
         if(cartItem == null){
-          height += 187;
+          height = 187;
         }else{
-          height += cartItem.offsetHeight + 9;
+          height = cartItem.offsetHeight + 9;
         }
       }
-      
-      this.opts.movedown(height);
+      if(hasClass(shoppingCart, 'invisible') || hasClass(shoppingCart, 'fadeOutUpBig')){
+        height += shoppingCart.offsetHeight + 50;
+        var event = new CustomEvent('triggerClick', { 'detail': height });
+        cartIcon.dispatchEvent(event);
+      }else{
+        this.opts.movedown(height);
+      }
+
     }
 
     addProduct(e){
         var product = e.item.product;
         var doesExist = this.opts.exists(e.item.product.id);
         this.animateCart(doesExist);
-        this.opts.add(product);console.log(this.opts);
+        this.opts.add(product);
     }
   </script>
   <style scoped>

@@ -15,7 +15,7 @@
 		<span class="cart-total">${this.state.shoppingcart.total}</span>
 	</a>
 
-		<component-shoppingcart id="ShoppingCart" class="animated	invisible" cart={this.state.shoppingcart}></component-shoppingcart>
+		<component-shoppingcart moveup={moveUp} id="ShoppingCart" class="animated	invisible" cart={this.state.shoppingcart}></component-shoppingcart>
 
 	<ul class="pure-menu-list" id="PML">
 		<sidebar-item links={this.state.sidebar.links} ></sidebar-item>
@@ -33,6 +33,7 @@
 	var riotGearActions = require('../riotgear/actions.js');
 	var store = this.opts.store;
 	var move = require('move-js');
+
 	store.subscribe(function(){
 		this.state = store.getState();
 		this.update();
@@ -114,15 +115,21 @@
 			addClass(shoppingCart, 'fadeInDown');
 		}
 		function moveDown(height){
+			if(!height || height == 1){
+				height = shoppingCartContainer.offsetHeight + 50;
+			}
 			move(pureMenuList)
-				.add('margin-top', shoppingCartContainer.offsetHeight + 50)
+				.add('margin-top', height)
 				.end();			
 		}
 		function moveUp(height){
-    	var top = pureMenuList.style['marginTop'];
-    	console.log(top);
+			if(!height || height == 1){
+				var top = pureMenuList.style['marginTop'];
+				height = parseInt(top, 10);
+			}
+			console.log(height)
 			move(pureMenuList)
-				.sub('margin-top', parseInt(top, 10))
+				.sub('margin-top', parseInt(height, 10))
 				.end();			
 		}
 		function grow(e){
@@ -141,25 +148,32 @@
 			addClass(pureMenuList, 'slideOutDown');
 		}
 		var a = 0;
-		cartIcon.onclick = function(e){
+		function handleEvent(e){
+			console.log(e);
 			if(hasClass(shoppingCart, 'invisible')){
 				removeClass(shoppingCart, 'invisible');
 			}
-			var cartItem = document.getElementsByClassName('cart-product')[0];
-
 			if(a == 0){
 				a = 1;
-				moveDown();
+				moveDown(e['detail']);
 			}else{
 				a = 0;
-				moveUp();
+				moveUp(e['detail']);
 			}
 			toggleClass(shoppingCart, 'active');
 			fadeInOut(e);
 		}
+		cartIcon.addEventListener('click', function (e) { handleEvent(e)}, false);
+		cartIcon.addEventListener('triggerClick', function (e) {handleEvent(e)}, false);
 	});
+	moveUp(height){
+    this.state.shoppingcart.moveUp(height);
+  }
 </script>
 <style scoped>
+#menu::-webkit-scrollbar { 
+    display: none; 
+}
 
 .we-accept-all-cards {
     color: white;
