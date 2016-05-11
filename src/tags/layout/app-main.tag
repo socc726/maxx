@@ -1,8 +1,7 @@
 <app-main>
   <article class="pure-u-5-5">
-    <img src="./src/images/logo.jpg" class="maxx-logo" alt="">
-    <h1>{ this.state.page.title }</h1>
-    <p>{ this.state.page.body }</p>
+    <h1 class="page-title">{ this.state.page.title }</h1>
+    <p class="page-body">{ this.state.page.body }</p>
 
     <home-page class="page-tag" if={this.state.page.id == 'HOME'} ></home-page>
 
@@ -44,10 +43,12 @@
       color: #666;
       /*width:80%;*/
     }
-    .maxx-logo{
-      width: 30%;
-      display: table;
-      margin: 0 auto;
+    .page-title{
+      text-align: left;
+      margin-top:0;
+    }
+    .page-body{
+      text-align: left;
     }
     .page-tag{
       display: table;

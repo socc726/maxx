@@ -9,7 +9,7 @@
 	        <img src="{product.images[0]}/resize/90" class="pure-img"/>
 	        
 	          <h2>{product.name}</h2>
-	          <p class="price">${product.retailPrice}</p>
+	          <p class="price">${product.retailPrice.formatMoney(2, '.', ',')}</p>
 						<i class="fa fa-recycle" aria-hidden="true" onclick={recycleItem}></i>
 	    </div>
 	    <div>
@@ -32,7 +32,7 @@
 		this.on('mount', function(){
 			store.dispatch(actions.getCart());
 		});
-
+		
 		function hasClass(el, className) {
       if (el.classList)
         return el.classList.contains(className)
@@ -40,31 +40,34 @@
         return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
     }
 
+    function closeCart(){
+			var cartIcon = document.getElementById('CartIcon')
+			cartIcon.click();
+    }
+
     animateCart(){
-      var cartItem = document.getElementsByClassName('cart-product')[0];
-
-      var height = 0;
-
-      if(cartItem == null){
-        height += 187;
-      }else{
-        height += cartItem.offsetHeight + 9;
-      }
-      
+      var height = 180;
       this.opts.moveup(height);
+    }
+
+    determineCourseOfAction(e){
+    	if(this.opts.cart.products.length == 0){
+				closeCart();
+			}
+			console.dir(e.item.product);
+			if(e.item.product.quantity == 0 && this.opts.cart.products.length > 0){
+				this.animateCart();
+			}
     }
 
 		emptyCart(){
 			store.dispatch(actions.emptyCart());
-			var cartIcon = document.getElementById('CartIcon')
-			cartIcon.click();
+			closeCart();
 		}
 
 		minusItem(e){
 			store.dispatch(actions.minus(e.item.product.id));
-			if(e.item.product.quantity == 1){
-				this.animateCart();
-			}
+			this.determineCourseOfAction(e);
 		}
 
 		plusItem(e){
@@ -73,7 +76,7 @@
 		
 		recycleItem(e){
 			store.dispatch(actions.recycle(e.item.product.id));
-			this.animateCart();
+			this.determineCourseOfAction(e);
 		}
 	</script>
 	<style>

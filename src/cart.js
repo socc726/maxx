@@ -22,8 +22,8 @@ function $storage() {
     decreaseQuantity: decreaseQuantity,
     removeItem: removeItem,
     removeItems: removeItems,
-    moveUp: moveUp,
-    moveDown: moveDown,
+    moveUpCart: moveUpCart,
+    moveDownCart: moveDownCart,
     exists: exists
   };
 
@@ -49,11 +49,11 @@ function $storage() {
     'clear': function(){
       return core.removeItems();
     },
-    'moveUp': function(height){
-      return core.moveUp(height);
+    'moveUpCart': function(height){
+      return core.moveUpCart(height);
     },
-    'moveDown': function(height){
-      return core.moveDown(height);
+    'moveDownCart': function(height){
+      return core.moveDownCart(height);
     },
     'products': products(),
     'total': calculateTotal(),
@@ -81,12 +81,11 @@ function setItem(item){
 
   if(!exists){
     item.quantity = 1;
-    item.retailPrice = item.retailPrice.formatMoney(2, '.', ',');
     cart.products.push(item);
   }
 
   ls.set(cartId, cart);
-  moveDown();
+  moveDownCart();
 }
 function exists(id){
   for (var i = 0; i < cart.products.length; i++) {
@@ -109,6 +108,7 @@ function decreaseQuantity(id){
   for (var i = 0; i < cart.products.length; i++) {
     if(cart.products[i].id == id){
       if(cart.products[i].quantity == 1){
+        cart.products[i].quantity--;
         removeItemByIndex(i);
         return;
       }
@@ -121,6 +121,7 @@ function decreaseQuantity(id){
 function removeItem(id){
   for (var i = 0; i < cart.products.length; i++) {
     if(cart.products[i].id == id){
+      cart.products[i].quantity = 0;
       cart.products.splice(i, 1);
     }
   }
@@ -157,14 +158,14 @@ function products(){
   return cart.products;
 }
 
-function moveDown(height){
+function moveDownCart(height){
   var pureMenuList = document.getElementById('PML');
   move(pureMenuList)
     .add('margin-top', height)
     .end();     
 }
 
-function moveUp(height){
+function moveUpCart(height){
   var pureMenuList = document.getElementById('PML');
   move(pureMenuList)
     .sub('margin-top', height)

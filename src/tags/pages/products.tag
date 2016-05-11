@@ -1,5 +1,5 @@
 <products-page>
-  <component-products exists={exists} movedown={moveDown} add={addProductToCart} products={this.state.inventory}></component-products>
+  <component-products exists={exists} movedown={moveDownProducts} add={addProductToCart} products={this.state.inventory}></component-products>
   <script>
 
     var actions = require('./actions.js');
@@ -21,8 +21,8 @@
         this.state.shoppingcart.post(product);
         store.dispatch(componentActions.getCart());
     }
-    moveDown(height){
-      this.state.shoppingcart.moveDown(height);
+    moveDownProducts(height){
+      this.state.shoppingcart.moveDownCart(height);
     }
   </script>
 </products-page>

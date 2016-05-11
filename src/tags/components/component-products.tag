@@ -38,19 +38,12 @@
       var cartItem = document.getElementsByClassName('cart-product')[0];
       var cartIcon = document.getElementById('CartIcon')
       var height = 0;
-
-
-
       if(!exists){
-        if(cartItem == null){
-          height = 187;
-        }else{
-          height = cartItem.offsetHeight + 9;
-        }
+        height = 180;
       }
       if(hasClass(shoppingCart, 'invisible') || hasClass(shoppingCart, 'fadeOutUpBig')){
         height += shoppingCart.offsetHeight + 50;
-        var event = new CustomEvent('triggerClick', { 'detail': height });
+        var event = new CustomEvent('triggerClick', { 'detail': {'height':height} });
         cartIcon.dispatchEvent(event);
       }else{
         this.opts.movedown(height);
@@ -59,10 +52,15 @@
     }
 
     addProduct(e){
+        e.target.disabled = true;
         var product = e.item.product;
         var doesExist = this.opts.exists(e.item.product.id);
         this.animateCart(doesExist);
         this.opts.add(product);
+        setTimeout(function() {
+            e.target.disabled = false;
+        }, 200);
+        
     }
   </script>
   <style scoped>

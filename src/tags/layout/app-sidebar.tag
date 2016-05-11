@@ -11,17 +11,19 @@
 
 		<i class="fa fa-shopping-cart fa-lg">
 		</i>
-			<span class="cart-item-quantity">{this.state.shoppingcart.quantity}</span>
+		<span class="cart-item-quantity">{this.state.shoppingcart.quantity}</span>
 		<span class="cart-total">${this.state.shoppingcart.total}</span>
 	</a>
 
-		<component-shoppingcart moveup={moveUp} id="ShoppingCart" class="animated	invisible" cart={this.state.shoppingcart}></component-shoppingcart>
+		<component-shoppingcart moveup={moveUpSidebar} id="ShoppingCart" class="animated	invisible" cart={this.state.shoppingcart}></component-shoppingcart>
 
 	<ul class="pure-menu-list" id="PML">
 		<sidebar-item links={this.state.sidebar.links} ></sidebar-item>
 	</ul>
 	<br>
 	<br>
+
+  <img src="./src/images/logo.jpg" class="maxx-logo" alt="">
 	<p class="we-accept-all-cards">We accept all major credit cards.</p>
 
   </div>
@@ -48,7 +50,8 @@
 		    cartIcon = document.getElementById('CartIcon'),
 		    pureMenuList = document.getElementById('PML'),
 		    shoppingCart = document.getElementById('ShoppingCart'),
-		    shoppingCartContainer = document.getElementById('ShoppingCartContainer');
+		    shoppingCartContainer = document.getElementById('ShoppingCartContainer'),
+		    a = 0;
 
 		function toggleClass(element, className) {
 		    var classes = element.className.split(/\s+/),
@@ -93,7 +96,6 @@
 
 		menuLink.onclick = function(e) {
 		    var active = 'active';
-
 		    e.preventDefault();
 		    toggleClass(layout, active);
 		    toggleClass(menu, active);
@@ -114,24 +116,29 @@
 			}
 			addClass(shoppingCart, 'fadeInDown');
 		}
+
 		function moveDown(height){
-			if(!height || height == 1){
-				height = shoppingCartContainer.offsetHeight + 50;
+			if(!height){
+				console.dir(shoppingCartContainer);
+				height = 330;
+				height += (shoppingCartContainer.children.length - 2) * 180;
 			}
 			move(pureMenuList)
 				.add('margin-top', height)
 				.end();			
 		}
+
 		function moveUp(height){
-			if(!height || height == 1){
+			if(!height){
 				var top = pureMenuList.style['marginTop'];
 				height = parseInt(top, 10);
 			}
-			console.log(height)
+			console.log(height + 'what');
 			move(pureMenuList)
-				.sub('margin-top', parseInt(height, 10))
+				.sub('margin-top', height)
 				.end();			
 		}
+
 		function grow(e){
 			e.preventDefault();
 			if(hasClass(e.target.parentNode.parentNode.children[2], 'slideOutDown')){
@@ -147,27 +154,44 @@
 			}
 			addClass(pureMenuList, 'slideOutDown');
 		}
-		var a = 0;
-		function handleEvent(e){
-			console.log(e);
+
+		function handleEvent(e) {
+			removeListeners();
 			if(hasClass(shoppingCart, 'invisible')){
 				removeClass(shoppingCart, 'invisible');
 			}
+			var height;
+			if(typeof(e['detail']) == 'object'){
+				height = e['detail'].height;
+			}
 			if(a == 0){
 				a = 1;
-				moveDown(e['detail']);
+				moveDown(height);
 			}else{
 				a = 0;
-				moveUp(e['detail']);
+				moveUp(height);
 			}
 			toggleClass(shoppingCart, 'active');
 			fadeInOut(e);
+			setTimeout(function() {
+      	addListeners();
+      }, 1000);
 		}
-		cartIcon.addEventListener('click', function (e) { handleEvent(e)}, false);
-		cartIcon.addEventListener('triggerClick', function (e) {handleEvent(e)}, false);
+
+		function addListeners(){
+			cartIcon.addEventListener('click', handleEvent, false);
+			cartIcon.addEventListener('triggerClick', handleEvent, false);
+		}
+
+		function removeListeners(){
+			cartIcon.removeEventListener('click', handleEvent, false);
+			cartIcon.removeEventListener('triggerClick', handleEvent, false);
+		}
+
+		addListeners();
 	});
-	moveUp(height){
-    this.state.shoppingcart.moveUp(height);
+	moveUpSidebar(height){
+    this.state.shoppingcart.moveUpCart(height);
   }
 </script>
 <style scoped>
@@ -190,6 +214,7 @@
 	background: #191818;
 	position: relative;
 	z-index: 999999999;
+	padding-top:22px;
 }
 .fa-shopping-cart{
 	position: relative;
@@ -202,8 +227,8 @@
 }
 .cart-item-quantity{
 		position: absolute;
-    left: 23px;
-    top: 6px;
+    left: 26px;
+    top: 14px;
     background: rgba(32, 61, 108, 0.88);
     border-radius: 84px;
     padding: 4px 4px;
@@ -226,6 +251,9 @@
 }
 #ShoppingCart.active{
 	visibility: visible;
+}
+.maxx-logo{
+	width:100%;
 }
 </style>
 </app-sidebar>
