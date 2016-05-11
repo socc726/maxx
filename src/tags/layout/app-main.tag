@@ -44,11 +44,11 @@
       /*width:80%;*/
     }
     .page-title{
-      text-align: left;
+      text-align: center;
       margin-top:0;
     }
     .page-body{
-      text-align: left;
+      text-align: center;
     }
     .page-tag{
       display: table;

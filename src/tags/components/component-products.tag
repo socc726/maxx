@@ -1,15 +1,13 @@
 <component-products class="container container--medium">  
   <div class="pure-g">
-    <div class="pure-u-1-3" each={product in this.opts.products}>
+    <div class="pure-u-6-24" each={product in this.opts.products}>
     
       <div class="image-wrapper overlay-fade-in">
         
         <img src="{product.images[0]}/resize/250" class="pure-img"/>
         
-        <div class="image-overlay-content">
+        <div class="image-overlay-content" onclick={addProduct}>
           <h2>{product.name}</h2>
-          <p class="price">${product.retailPrice}</p>
-          <button class="button" onclick={addProduct}>Get it</button>
         </div>
       
       </div>
@@ -39,7 +37,7 @@
       var cartIcon = document.getElementById('CartIcon')
       var height = 0;
       if(!exists){
-        height = 180;
+        height = 190;
       }
       if(hasClass(shoppingCart, 'invisible') || hasClass(shoppingCart, 'fadeOutUpBig')){
         height += shoppingCart.offsetHeight + 50;
@@ -59,7 +57,7 @@
         this.opts.add(product);
         setTimeout(function() {
             e.target.disabled = false;
-        }, 200);
+        }, 500);
         
     }
   </script>
@@ -102,11 +100,12 @@
     }
     .overlay-fade-in h2 {
         color: #f2f2f2;
-        font-size: 1.2rem;
-        margin-top: 10%;
+        font-size: 1.0rem;
+        margin-top: 25%;
         opacity: 0;
+        padding: 5px;
         transition: all 0.2s ease-in-out;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.5);
     }
     .overlay-fade-in .button {
         display: inline-block;

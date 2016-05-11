@@ -4,8 +4,8 @@
 	        <div class="hp-loading-container"><span class="hp-loading-text">Loading</span>
 	            <div class="hp-loading"><span></span><span></span><span></span><span></span></div>
 	        </div>
-	        <div class="hp-row">
-	            <div class="hp-col hp-col-left">
+	        <div class="hp-row pure-g">
+	            <div class="hp-col hp-col-left pure-u-1 pure-u-sm-8-24 pure-u-md-8-24 pure-u-lg-1-4">
 	                <ul class="hp-nav">
 	                	<li class="hp-type hp-cc"><a href="javascript:void(0);"><i></i> <span>Credit Card</span></a></li>
 	                </ul>
@@ -15,29 +15,29 @@
 	                <div class="hp-secure"><a class="hp-secure-icon" href="https://www.etsms.com/" target="_blank" title="ETS - Electronic Transaction Systems">Powered By ETS</a></div>
 	                <div class="hp-version"><small class="hp-version"><span class="">Transaction Amount: <span class="hp-version-amount">$38.00</span></span><br>Hosted Payments v3.1.0</small></div>
 	            </div>
-	            <div class="hp-col hp-col-right">
+	            <div class="hp-col hp-col-right pure-u-1 pure-u-sm-16-24 pure-u-md-16-24 pure-u-lg-3-4">
 	                <div class="hp-content hp-content-cc hp-content-active">
 	                	<div class="card-wrapper"></div>
 	                	<br>
 	                	<br>
-						<form class="hp-input-wrapper">
-							<div class="hp-input hp-input-cc">
-								<input placeholder="Enter Card Number" type="text" name="number">
-							</div>
-							<div class="hp-input hp-input-name">
-								<input placeholder="Enter Full Name" type="text" name="name"/>
-							</div>
-							<div class="hp-input hp-input-cc">
-								<input placeholder="07/26" type="text" name="expiry"/>
-							</div>
-							<div class="hp-input hp-input-third hp-input-cvv hp-input-name">
-								<input placeholder="Enter CVV" type="text" name="cvc"/>
-								<span class="hp-input-cvv-image"></span>
-							</div>
-							<div class="hp-break"></div>
-							<br>
-							<button class="hp-submit">Submit Payment</button>
-						</form>
+									<form class="hp-input-wrapper">
+										<div class="hp-input hp-input-cc">
+											<input placeholder="Enter Card Number" type="text" name="number">
+										</div>
+										<div class="hp-input hp-input-name">
+											<input placeholder="Enter Full Name" type="text" name="name"/>
+										</div>
+										<div class="hp-input hp-input-cc">
+											<input placeholder="07/26" type="text" name="expiry"/>
+										</div>
+										<div class="hp-input hp-input-third hp-input-cvv hp-input-name">
+											<input placeholder="Enter CVV" type="text" name="cvc"/>
+											<span class="hp-input-cvv-image"></span>
+										</div>
+										<div class="hp-break"></div>
+										<br>
+										<button class="hp-submit">Submit Payment</button>
+									</form>
 	                </div>
 <!-- 			                <div class="hp-content hp-content-success">
 	                    <div class="hp-success-visual"></div>
@@ -123,7 +123,6 @@
 			font-weight: 400;
 			font-size: 16px!important;
 			background: #FDFDFD;
-			max-width: 644px;
 			position: relative;
 			border: 1px solid #f3f3f3;
 		}
@@ -139,9 +138,6 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			font-weight: 700;
-			width: 200px;
-			margin-left: -100px;
 			text-align: center;
 			text-transform: uppercase;
 			color: #007aff;
@@ -152,8 +148,6 @@
 			line-height: 40px;
 			top: 50%;
 			left: 50%;
-			margin-left: -28.67px;
-			margin-top: -35px;
 		}
 
 		.hp .hp-loading-container .hp-loading span {
@@ -197,8 +191,7 @@
 			-moz-border-radius: 3px;
 			-webkit-border-radius: 3px;
 			border-radius: 3px;
-			background: 0 0;
-			border: 1px solid #9CA3B3;			
+			background: 0 0;		
 		}
 
 		.hp .hp-col {
@@ -213,9 +206,9 @@
 		}
 
 		.hp .hp-col-left {
-			width: 185px;
 			text-align: left;
-			margin: 13px 0;			
+			margin: 13px 0;
+			border-right: 1px solid #9CA3B3;	
 		}
 
 		.hp .hp-col-left .hp-nav {
@@ -282,18 +275,13 @@
 			display: block;			
 		}
 
-		.hp .hp-col-right{
-			width: 100%;
-			margin-left: -185px;
-			padding-left: 185px;
-		}
 
 		.hp .hp-col-right .hp-content {
 			-moz-box-sizing: border-box;
 			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
 			display: table;
-			border-left: 1px solid #9CA3B3;
+			margin: 0 auto;
 			padding: 22px 13px;
 			min-height: 485px;			
 		}
@@ -314,7 +302,7 @@
 			border: 1px solid #7f889d;
 			display: block;
 			height: 236px;
-			width: 400px;
+			width: 100%;
 			position: relative;
 			margin: 0 auto;			
 		}
@@ -323,7 +311,7 @@
 		}
 		.jp-card{
 			height: 236px;
-			width: 400px;
+			width: 100%;
 		}
 		.jp-card .jp-card-front, .jp-card .jp-card-back{
 			-moz-box-sizing: border-box;
@@ -342,7 +330,7 @@
 			border: 1px solid #7f889d;
 			display: block;
 			height: 236px;
-			width: 400px;
+			width: 100%;
 			margin: 0 auto;	
 		}
 
@@ -533,6 +521,9 @@
 			outline: 0;
 			position: relative;
 			top: 0;			
+		}
+		.component-hp .hp .hp-col-right .pure-u-1 .hp-content{
+			border-left: none;
 		}
 	</style>
 </component-hp>

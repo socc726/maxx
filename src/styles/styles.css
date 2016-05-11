@@ -30,6 +30,10 @@ body {
   display: table;
   width:90%;
 }
+.button-success {
+    background: rgb(28, 184, 65);
+    color:white;
+}
 /*
 Add transition to containers so they can push in and out.
 */

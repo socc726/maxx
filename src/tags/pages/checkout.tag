@@ -1,9 +1,4 @@
 <checkout-page>
-	<button onclick={handlePaymentInstrument}>Create Payment Instrument</button>
-	<button onclick={handleChargeRequest}>Charge Request</button>
-	<button onclick={handleAuthorizeRequest}>Authorize Request</button>
-	<button onclick={handleAccountStatusRequest}>Account Status</button>
-	<button onclick={handleTransactionStatusRequest}>Transaction Status</button>
 	<component-shipping address={this.state.shippingAddress}>
 	</component-shipping>
 
