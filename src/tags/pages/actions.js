@@ -166,7 +166,8 @@ function createPaymentInstrument(){
 			hostedState.createPaymentInstrumentResponse = data.createPaymentInstrumentResponse;
 			
 			dispatch(toggleLoading(false));
-			return dispatch(hostedResponse(hostedState));
+			dispatch(hostedResponse(hostedState));
+			dispatch(createChargeRequest());
 		}).catch(httpClient.error);
 	}
 }
@@ -189,6 +190,64 @@ function createChargeRequest(){
 
 		httpClient.post(hpRequest).then(function(data){
 			hostedState.chargeResponse = data.chargeResponse;
+			dispatch(hostedResponse(hostedState));
+			dispatch(toggleLoading(false));
+			dispatch(createOrderRequest());
+		})
+	}
+}
+
+function quantityPush(id, quantity, ids){
+	 for (var i = 0; i <= quantity; i++) {
+    ids.push(id);
+  }
+}
+
+function getProductIds(products){
+	var ids = [];
+	for (var i = 0; i < products.length; i++) {
+		if(products[i].quantity <= 0){
+			continue;
+		}
+		if(products[i].quantity == 1){
+			ids.push(products[i].id);
+		}else{
+			quantityPush(products[i].id, products[i].quantity, ids);
+		}
+	}
+	return ids;
+}
+
+function createOrderRequest(){
+	return function(dispatch, getState){
+		var httpClient = new http.client([]);
+		var products = getState().shoppingcart.products;
+		var hostedState = getState().hosted;
+		var userInfo = hostedState.user;
+		hpRequest.data = {
+		   "order" : {
+		       "orderRequest" : {
+		            "token" : hostedState.signInResponse.token,
+		            "items" : getProductIds(products),
+		            "instrumentId" : hostedState.createPaymentInstrumentResponse.instrumentId, 
+		            "customerName" : userInfo.name,
+		            "shippingAddressLine1" : userInfo.shipping.address,
+		            "shippingAddressPostalCode" : userInfo.shipping.zip,
+		            "shippingAddressState" : userInfo.shipping.state,
+		            "shippingAddressCity" : userInfo.shipping.city,
+		            "shippingAddressCountry" : "U.S.",
+		            "billingAddressLine1" : userInfo.billing.address,
+		            "billingAddressPostalCode" : userInfo.billing.zip,
+		            "billingAddressState" : userInfo.billing.state,
+		            "billingAddressCity" : userInfo.billing.city,
+		            "billingAddressCountry" : "U.S.",
+		            "customerPhone" : userInfo.phone,
+		            "customerEmail": userInfo.email
+		        }
+		    }
+		}
+		httpClient.post(hpRequest).then(function(data){
+			hostedState.authorizeResponse = data.authorizeResponse;
 			dispatch(hostedResponse(hostedState));
 			dispatch(toggleLoading(false));
 		})
