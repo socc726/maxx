@@ -164,8 +164,9 @@ function createPaymentInstrument(){
 
 		httpClient.post(hpRequest).then(function(data){
 			hostedState.createPaymentInstrumentResponse = data.createPaymentInstrumentResponse;
-			dispatch(hostedResponse(hostedState));
+			
 			dispatch(toggleLoading(false));
+			return dispatch(hostedResponse(hostedState));
 		}).catch(httpClient.error);
 	}
 }

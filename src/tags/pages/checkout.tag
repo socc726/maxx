@@ -31,7 +31,8 @@
 			store.dispatch(actions.createPaymentInstrument());
 		}
 
-		handleChargeRequest(){
+		handleChargeRequest(a){
+			console.log(a);
 			store.dispatch(actions.createChargeRequest());
 		}
 
@@ -54,9 +55,11 @@
 		handleSubmit(event){
 
 			this.handleContactBillingShippingInfo(event);
-			this.handlePaymentInstrument();
-			this.handleChargeRequest();
-			
+
+			var here = this.handlePaymentInstrument();
+
+			this.handleChargeRequest(here);
+
 			store.dispatch(actions.submitPayment(id,isComplete));
 
 		}
