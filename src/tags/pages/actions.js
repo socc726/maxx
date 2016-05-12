@@ -17,6 +17,7 @@ var inventoryRequest = {
 
 module.exports = {
   createSignInRequest: createSignInRequest,
+  createUserInfo: createUserInfo,
   createPaymentInstrument: createPaymentInstrument,
   createChargeRequest: createChargeRequest,
   createAccountStatusRequest: createAccountStatusRequest,
@@ -40,7 +41,6 @@ function getProductsFromInventory(){
 function createSignInRequest(){
 	return function(dispatch, getState){
 		var httpClient = new http.client([]);
-
 		hpRequest.data = {
 			'signIn' : {
 				'signInRequest': {
@@ -56,13 +56,83 @@ function createSignInRequest(){
 	}
 }
 
+function validateContactInfo(contact){
+
+}
+
+function getContact(info){
+	var contact = info.tags['component-contact'];
+
+	validateContactInfo(contact);
+
+	return {
+		name: contact.firstName.value + " " + contact.lastName.value,
+		email: contact.email.value,
+		phone: contact.phone.value
+	}
+}
+
+function validateBillingInfo(billing){
+
+}
+
+function getBilling(info){
+	var billing = info.tags['component-billing'];
+	
+	validateBillingInfo(billing);
+
+	return {
+		city: billing.city.value,
+		state: billing.state.value,
+		zip: billing.zip.value,
+		address: billing.address.value
+	}
+}
+
+function validateShippingInfo(shipping){
+
+}
+
+function getShipping(info){
+	var shipping = info.tags['component-shipping'];
+	
+	validateShippingInfo(shipping);
+
+	return {
+		city: shipping.city.value,
+		state: shipping.state.value
+	}
+}
+
+function validateCardInfo(card){
+	card.number.value = card.number.value.replace(/\s/g, '');
+	card.expiry.value = card.expiry.value.replace(/\s/g, '');
+}
+
+function getCard(info){
+	validateCardInfo(info);
+
+	return {
+		name: info.name.value,
+		number: info.number.value,
+		cvv: info.cvc.value,
+		expiry: info.expiry.value
+	}
+}
+
+function buildUserObject(info){
+	var user = getContact(info);
+	user.billing = getBilling(info);
+	user.shipping = getShipping(info);
+	user.card = getCard(info);
+	return user;
+}
+
 function createUserInfo(event){
 	return function(dispatch, getState){
 		var hostedState = getState().hosted;
-		hostedState.userInfo = {};
-		console.log(hostedState);
-		console.log(event);
-		dispatch(hostedResponse(data));
+		hostedState.user = buildUserObject(event);
+		dispatch(hostedResponse(hostedState));
 		dispatch(toggleLoading(false));
 	}
 }
@@ -79,14 +149,14 @@ function createPaymentInstrument(){
 					'token': token,
 					'name': userInfo.name,
 					'properties': {
-						'nameOnCard': userInfo.name,
-						'cardNumber': userInfo.cardNumber,
-						'expirationDate': userInfo.expy,
-						'cvv':userInfo.cvv
+						'nameOnCard': userInfo.card.name,
+						'cardNumber': userInfo.card.number,
+						'expirationDate': userInfo.card.expiry,
+						'cvv':userInfo.card.cvv
 					},
 					'billingAddress': {
-						'addressLine1': userInfo.addressLine1,
-						'postalCode': userInfo.postalCode
+						'addressLine1': userInfo.billing.address,
+						'postalCode': userInfo.billing.zip
 					}
 				}
 			}
@@ -100,17 +170,16 @@ function createPaymentInstrument(){
 	}
 }
 
-function createChargeRequest(amount){
+function createChargeRequest(){
 	return function(dispatch, getState){
 		var httpClient = new http.client([]);
-		var amount = getState().shoppingCart.total
+		var amount = getState().shoppingcart.total
 		var hostedState = getState().hosted;
 
 		hpRequest.data = {
 			'charge': {
 				'chargeRequest': {
 					'token': hostedState.signInResponse.token,
-					'transactionId': hostedState.createPaymentInstrumentResponse.transactionId,
 					'instrumentId': hostedState.createPaymentInstrumentResponse.instrumentId,
 					'amount': amount
 				}
@@ -128,7 +197,7 @@ function createChargeRequest(amount){
 function createAuthorizeRequest(){
 	return function(dispatch, getState){
 		var httpClient = new http.client([]);
-		var amount =getState().shoppingCart.total
+		var amount =getState().shoppingcart.total
 		var hostedState = getState().hosted;
 		hpRequest.data = {
 			'authorize': {
@@ -152,7 +221,7 @@ function createAuthorizeRequest(){
 function createAccountStatusRequest(){
 	return function(dispatch, getState){
 		var httpClient = new http.client([]);
-		//TODO: amount: getState().shoppingCart.total
+		//TODO: amount: getState().shoppingcart.total
 		var hostedState = getState().hosted;
 		hpRequest.data = {
 			'status': {
@@ -174,7 +243,7 @@ function createAccountStatusRequest(){
 function createTransactionStatusRequest(){
 	return function(dispatch, getState){
 		var httpClient = new http.client([]);
-		//TODO: amount: getState().shoppingCart.total
+		//TODO: amount: getState().shoppingcart.total
 		var hostedState = getState().hosted;
 		hpRequest.data = {
 			'status': {

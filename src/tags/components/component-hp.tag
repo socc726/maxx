@@ -1,4 +1,13 @@
 <component-hp>
+
+	<component-contact></component-contact>
+
+	<component-shipping address={this.state.shippingAddress}>
+	</component-shipping>
+
+	<component-billing address={this.state.billingAddress == null ? this.state.shippingAddress : this.state.billingAddress}>
+	</component-billing>
+
 	<div class="hp-iframe">
 	    <div class="hp hp-form hp-active hp-form-cc hp-form-desktop">
 	        <div class="hp-loading-container"><span class="hp-loading-text">Loading</span>
@@ -50,6 +59,7 @@
 	</div>
 
 	<script>
+
 		var actions = require('./actions.js');
 		var $ = require("jquery");
 		window.jQuery = $;
@@ -62,6 +72,7 @@
 		}.bind(this));
 		
 		this.on('mount', function(){
+			console.log(this);
 			$( document ).ready(function() {
 				var card = new Card({
 					form: 'form.hp-input-wrapper',
@@ -82,9 +93,8 @@
 		});
 		
 		handleSubmit(evt){
-			console.log(evt);
 			evt.preventDefault();
-			this.opts.handlesubmit(evt);
+			this.opts.handlesubmit(this);
 		}
 
 	</script>
