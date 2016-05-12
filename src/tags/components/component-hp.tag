@@ -20,7 +20,7 @@
 	                	<div class="card-wrapper"></div>
 	                	<br>
 	                	<br>
-									<form class="hp-input-wrapper">
+									<form class="hp-input-wrapper" onsubmit={handleSubmit}>
 										<div class="hp-input hp-input-cc">
 											<input placeholder="Enter Card Number" type="text" name="number">
 										</div>
@@ -36,7 +36,7 @@
 										</div>
 										<div class="hp-break"></div>
 										<br>
-										<button class="hp-submit">Submit Payment</button>
+										<button class="hp-submit" type="submit">Submit Payment</button>
 									</form>
 	                </div>
 <!-- 			                <div class="hp-content hp-content-success">
@@ -64,7 +64,7 @@
 		this.on('mount', function(){
 			$( document ).ready(function() {
 				var card = new Card({
-					form: 'form',
+					form: 'form.hp-input-wrapper',
 					container: '.card-wrapper',
 
 					placeholders: {
@@ -72,13 +72,19 @@
 						name: 'Name On Card',
 						expiry: '**/**',
 						cvc: '***'
-					}
+					},
+					debug: true
 				});
 			});
+			// create payment instrument
+
+			// 
 		});
 		
 		handleSubmit(evt){
-			this.opts.handleSubmit(evt);
+			console.log(evt);
+			evt.preventDefault();
+			this.opts.handlesubmit(evt);
 		}
 
 	</script>

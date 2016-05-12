@@ -1,34 +1,44 @@
 <checkout-page>
-	<component-shipping address={this.state.shippingAddress}>
-	</component-shipping>
+		<component-contact></component-contact>
 
-	<component-billing address={this.state.billingAddress == null ? this.state.shippingAddress : this.state.billingAddress}>
-	</component-billing>
+		<component-shipping address={this.state.shippingAddress}>
+		</component-shipping>
 
-	<component-hp customer={this.state.customer} handleSubmit={handleSubmit}>
+		<component-billing address={this.state.billingAddress == null ? this.state.shippingAddress : this.state.billingAddress}>
+		</component-billing>
 
-	</component-hp>
+		<component-hp customer={this.state.customer} handlesubmit={handleSubmit}>
+
+		</component-hp>
 
 	<script>
 
-	    var actions = require('./actions.js');
-	    var store = this._parent.opts.store;
+	  var actions = require('./actions.js');
+	  var store = this._parent.opts.store;
 
 		store.subscribe(function(){
 			this.state = store.getState();
 			this.update();
 		}.bind(this));
 
+		function getUserInfo(evt){
+
+		}
+
+		function getAmount(evt){
+
+		}
+
 		this.on('mount', function(){
 			store.dispatch(actions.createSignInRequest());
 		});
 
-		handlePaymentInstrument(event){
-			store.dispatch(actions.createPaymentInstrument());
+		handlePaymentInstrument(userInfo){
+			store.dispatch(actions.createPaymentInstrument(userInfo));
 		}
 
-		handleChargeRequest(event){
-			store.dispatch(actions.createChargeRequest());
+		handleChargeRequest(amount){
+			store.dispatch(actions.createChargeRequest(amount));
 		}
 
 		handleAuthorizeRequest(event){
@@ -45,6 +55,8 @@
 
 		handleSubmit(event){
 			if(this.state.shippingAddress.isValid && this.state.billingAddress.isValid){
+				this.handlePaymentInstrument(getUserInfo(event));
+				this.handleChargeRequest(getAmount(event));
 				store.dispatch(actions.submitPayment(id,isComplete));
 			}
 		}

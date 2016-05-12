@@ -1,8 +1,5 @@
 <app-main>
   <article class="pure-u-5-5">
-    <h1 class="page-title">{ this.state.page.title }</h1>
-    <p class="page-body">{ this.state.page.body }</p>
-
     <home-page class="page-tag" if={this.state.page.id == 'HOME'} ></home-page>
 
     <products-page class="page-tag" if={this.state.page.id == 'PRODUCTS'} page={this.state.page} ></products-page>

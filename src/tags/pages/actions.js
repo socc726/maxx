@@ -56,7 +56,7 @@ function createSignInRequest(){
 	}
 }
 
-function createPaymentInstrument(){
+function createPaymentInstrument(userInfo){
 	return function(dispatch, getState){
 		var httpClient = new http.client([]);
 		var hostedState = getState().hosted;
@@ -64,16 +64,16 @@ function createPaymentInstrument(){
 			'createPaymentInstrument': {
 				'createPaymentInstrumentRequest':{
 					'token': hostedState.signInResponse.token,
-					'name': 'Frank Pringle',
+					'name': userInfo.name,
 					'properties': {
-						'nameOnCard': 'Sam Merrill',
-						'cardNumber': '4012111111111111',
-						'expirationDate': '12/2019',
-						'cvv':'999'
+						'nameOnCard': userInfo.name,
+						'cardNumber': userInfo.cardNumber,
+						'expirationDate': userInfo.expy,
+						'cvv':userInfo.cvv
 					},
 					'billingAddress': {
-						'addressLine1': '8320',
-						'postalCode': '85284'
+						'addressLine1': userInfo.addressLine1,
+						'postalCode': userInfo.postalCode
 					}
 				}
 			}
@@ -87,7 +87,7 @@ function createPaymentInstrument(){
 	}
 }
 
-function createChargeRequest(){
+function createChargeRequest(amount){
 	return function(dispatch, getState){
 		var httpClient = new http.client([]);
 		//TODO: amount: getState().shoppingCart.total
@@ -96,24 +96,10 @@ function createChargeRequest(){
 		hpRequest.data = {
 			'charge': {
 				'chargeRequest': {
-					'__request': {
-						'token': hostedState.signInResponse.token,
-						'name': 'Frank Pringle',
-						'properties': {
-							'nameOnCard': 'Sam Merrill',
-							'cardNumber': '4012111111111111',
-							'expirationDate': '12/2019',
-							'cvv':'999'
-						},
-						'billingAddress': {
-						'addressLine1': '8320',
-						'postalCode': '85284'
-						}
-					},
 					'token': getState().hosted.signInResponse.token,
 					'transactionId': getState().hosted.createPaymentInstrumentResponse.transactionId,
 					'instrumentId': getState().hosted.createPaymentInstrumentResponse.instrumentId,
-					'amount': 30.00
+					'amount': amount
 				}
 			}
 		}

@@ -1,6 +1,6 @@
 <component-products class="container container--medium">  
   <div class="pure-g">
-    <div class="pure-u-6-24" each={product in this.opts.products}>
+    <div class="pure-u-24-24 pure-u-sm-12-24 pure-u-md-8-24 pure-u-lg-6-24" each={product in this.opts.products}>
     
       <div class="image-wrapper overlay-fade-in">
         

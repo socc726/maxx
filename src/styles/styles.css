@@ -34,6 +34,22 @@ body {
     background: rgb(28, 184, 65);
     color:white;
 }
+  hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+  }
+  label{
+    display: inline-block;
+    text-align: left;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .text-danger {
+    color: #a94442;
+  }
 /*
 Add transition to containers so they can push in and out.
 */
