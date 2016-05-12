@@ -52,8 +52,11 @@
 		handleTransactionStatusRequest(event){
 			store.dispatch(actions.createTransactionStatusRequest());
 		}
-
+		collectContactBillingShippingInfo(event){
+			store.dispatch(actions.createUserInfo(event));
+		}
 		handleSubmit(event){
+			this.collectContactBillingShippingInfo(event);
 			if(this.state.shippingAddress.isValid && this.state.billingAddress.isValid){
 				this.handlePaymentInstrument(getUserInfo(event));
 				this.handleChargeRequest(getAmount(event));

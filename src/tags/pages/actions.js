@@ -56,14 +56,27 @@ function createSignInRequest(){
 	}
 }
 
-function createPaymentInstrument(userInfo){
+function createUserInfo(event){
+	return function(dispatch, getState){
+		var hostedState = getState().hosted;
+		hostedState.userInfo = {};
+		console.log(hostedState);
+		console.log(event);
+		dispatch(hostedResponse(data));
+		dispatch(toggleLoading(false));
+	}
+}
+
+function createPaymentInstrument(){
 	return function(dispatch, getState){
 		var httpClient = new http.client([]);
 		var hostedState = getState().hosted;
+		var token = hostedState.signInResponse.token;
+		var userInfo = hostedState.user;
 		hpRequest.data = {
 			'createPaymentInstrument': {
 				'createPaymentInstrumentRequest':{
-					'token': hostedState.signInResponse.token,
+					'token': token,
 					'name': userInfo.name,
 					'properties': {
 						'nameOnCard': userInfo.name,
@@ -90,15 +103,15 @@ function createPaymentInstrument(userInfo){
 function createChargeRequest(amount){
 	return function(dispatch, getState){
 		var httpClient = new http.client([]);
-		//TODO: amount: getState().shoppingCart.total
+		var amount = getState().shoppingCart.total
 		var hostedState = getState().hosted;
 
 		hpRequest.data = {
 			'charge': {
 				'chargeRequest': {
-					'token': getState().hosted.signInResponse.token,
-					'transactionId': getState().hosted.createPaymentInstrumentResponse.transactionId,
-					'instrumentId': getState().hosted.createPaymentInstrumentResponse.instrumentId,
+					'token': hostedState.signInResponse.token,
+					'transactionId': hostedState.createPaymentInstrumentResponse.transactionId,
+					'instrumentId': hostedState.createPaymentInstrumentResponse.instrumentId,
 					'amount': amount
 				}
 			}
@@ -115,13 +128,13 @@ function createChargeRequest(amount){
 function createAuthorizeRequest(){
 	return function(dispatch, getState){
 		var httpClient = new http.client([]);
-		//TODO: amount: getState().shoppingCart.total
+		var amount =getState().shoppingCart.total
 		var hostedState = getState().hosted;
 		hpRequest.data = {
 			'authorize': {
 				'authorizeRequest': {
 					'token': getState().hosted.signInResponse.token,
-					'amount': 30.00,
+					'amount': amount,
 					'transactionId': getState().hosted.createPaymentInstrumentResponse.transactionId,
 					'instrumentId': getState().hosted.createPaymentInstrumentResponse.instrumentId,
 				}
