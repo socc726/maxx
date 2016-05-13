@@ -23,7 +23,16 @@ module.exports = {
   createAccountStatusRequest: createAccountStatusRequest,
   createTransactionStatusRequest: createTransactionStatusRequest,
   createAuthorizeRequest: createAuthorizeRequest,
-  getProductsFromInventory: getProductsFromInventory
+  getProductsFromInventory: getProductsFromInventory,
+  toggleShipping: toggleShipping
+}
+
+function toggleShipping(checked){
+	return function(dispatch, getState){
+		var hostedState = getState().hosted;
+		hostedState.sameAs = checked;
+		dispatch(hostedResponse(hostedState));
+  }
 }
 
 function getProductsFromInventory(){
@@ -95,7 +104,7 @@ function validateShippingInfo(shipping){
 
 function getShipping(info){
 	var shipping = info.tags['component-shipping'];
-	
+
 	validateShippingInfo(shipping);
 
 	return {
@@ -105,8 +114,6 @@ function getShipping(info){
 }
 
 function validateCardInfo(card){
-	card.number.value = card.number.value.replace(/\s/g, '');
-	card.expiry.value = card.expiry.value.replace(/\s/g, '');
 }
 
 function getCard(info){
@@ -114,16 +121,16 @@ function getCard(info){
 
 	return {
 		name: info.name.value,
-		number: info.number.value,
+		number: info.number.value.replace(/\s/g, ''),
 		cvv: info.cvc.value,
-		expiry: info.expiry.value
+		expiry: info.expiry.value.replace(/\s/g, '')
 	}
 }
 
-function buildUserObject(info){
-	var user = getContact(info);
-	user.billing = getBilling(info);
-	user.shipping = getShipping(info);
+function buildUserObject(info, hostedState){
+	var user = getContact(info.parent);
+	user.billing = getBilling(info.parent);
+	user.shipping = hostedState.sameAs == true || hostedState.sameAs == undefined ? getBilling(info.parent) : getShipping(info.parent);
 	user.card = getCard(info);
 	return user;
 }
@@ -131,7 +138,7 @@ function buildUserObject(info){
 function createUserInfo(event){
 	return function(dispatch, getState){
 		var hostedState = getState().hosted;
-		hostedState.user = buildUserObject(event);
+		hostedState.user = buildUserObject(event, hostedState);
 		dispatch(hostedResponse(hostedState));
 		dispatch(toggleLoading(false));
 	}

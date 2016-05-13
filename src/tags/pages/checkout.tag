@@ -1,9 +1,15 @@
 <checkout-page>
 
+	<component-contact></component-contact>
 
-		<component-hp customer={this.state.customer} handlesubmit={handleSubmit}>
+	<component-billing handlecheck={handleShippingCheck}>
+	</component-billing>
 
-		</component-hp>
+	<component-shipping hide={this.state.hosted.sameAs}>
+	</component-shipping>
+
+	<component-hp customer={this.state.customer} handlesubmit={handleSubmit}>
+	</component-hp>
 
 	<script>
 
@@ -15,12 +21,9 @@
 			this.update();
 		}.bind(this));
 
-		function getUserInfo(evt){
-
-		}
-
-		function getAmount(evt){
-
+		handleShippingCheck(checked){
+			store.dispatch(actions.toggleShipping(checked));
+			console.log(this);
 		}
 
 		this.on('mount', function(){

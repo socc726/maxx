@@ -1,13 +1,10 @@
 <component-hp>
-
-	<component-contact></component-contact>
-
-	<component-shipping address={this.state.shippingAddress}>
-	</component-shipping>
-
-	<component-billing address={this.state.billingAddress == null ? this.state.shippingAddress : this.state.billingAddress}>
-	</component-billing>
-
+  <div class="pure-g">
+  	<div class="pure-u-1 pure-u-md-8-24"></div>
+  	<hr class="pure-u-1 pure-u-md-8-24">
+  	<div class="pure-u-1 pure-u-md-8-24"></div>
+  </div>
+	<h1>2. Payment Information</h1>
 	<div class="hp-iframe">
 	    <div class="hp hp-form hp-active hp-form-cc hp-form-desktop">
 	        <div class="hp-loading-container"><span class="hp-loading-text">Loading</span>
@@ -96,7 +93,6 @@
 			evt.preventDefault();
 			this.opts.handlesubmit(this);
 		}
-
 	</script>
 
 
