@@ -109,7 +109,9 @@ function getShipping(info){
 
 	return {
 		city: shipping.city.value,
-		state: shipping.state.value
+		state: shipping.state.value,
+		zip: shipping.zip.value,
+		address: shipping.address.value
 	}
 }
 
@@ -137,10 +139,10 @@ function buildUserObject(info, hostedState){
 
 function createUserInfo(event){
 	return function(dispatch, getState){
+		dispatch(toggleLoading(true));
 		var hostedState = getState().hosted;
 		hostedState.user = buildUserObject(event, hostedState);
 		dispatch(hostedResponse(hostedState));
-		dispatch(toggleLoading(false));
 	}
 }
 
@@ -172,7 +174,6 @@ function createPaymentInstrument(){
 		httpClient.post(hpRequest).then(function(data){
 			hostedState.createPaymentInstrumentResponse = data.createPaymentInstrumentResponse;
 			
-			dispatch(toggleLoading(false));
 			dispatch(hostedResponse(hostedState));
 			dispatch(createChargeRequest());
 		}).catch(httpClient.error);
@@ -198,7 +199,6 @@ function createChargeRequest(){
 		httpClient.post(hpRequest).then(function(data){
 			hostedState.chargeResponse = data.chargeResponse;
 			dispatch(hostedResponse(hostedState));
-			dispatch(toggleLoading(false));
 			dispatch(createOrderRequest());
 		})
 	}
@@ -255,6 +255,7 @@ function createOrderRequest(){
 		}
 		httpClient.post(hpRequest).then(function(data){
 			hostedState.authorizeResponse = data.authorizeResponse;
+			hostedState.transactionComplete = true;
 			dispatch(hostedResponse(hostedState));
 			dispatch(toggleLoading(false));
 		})

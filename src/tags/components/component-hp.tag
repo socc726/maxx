@@ -7,9 +7,11 @@
 	<h1>2. Payment Information</h1>
 	<div class="hp-iframe">
 	    <div class="hp hp-form hp-active hp-form-cc hp-form-desktop">
-	        <div class="hp-loading-container"><span class="hp-loading-text">Loading</span>
-	            <div class="hp-loading"><span></span><span></span><span></span><span></span></div>
-	        </div>
+	        <div class="hp-loading-container" show={this.opts.loading}><span class="hp-loading-text">Loading</span>
+	            <div class="hp-loading">
+	            	<span></span><span></span><span></span><span></span>
+	            </div>
+	        </div>	
 	        <div class="hp-row pure-g">
 	            <div class="hp-col hp-col-left pure-u-1 pure-u-sm-8-24 pure-u-md-8-24 pure-u-lg-1-4">
 	                <ul class="hp-nav">
@@ -19,37 +21,37 @@
 	                    <p>Having issues with your payments? Call us at 800-834-7790.</p>
 	                </div>
 	                <div class="hp-secure"><a class="hp-secure-icon" href="https://www.etsms.com/" target="_blank" title="ETS - Electronic Transaction Systems">Powered By ETS</a></div>
-	                <div class="hp-version"><small class="hp-version"><span class="">Transaction Amount: <span class="hp-version-amount">$38.00</span></span><br>Hosted Payments v3.1.0</small></div>
+	                <div class="hp-version"><small class="hp-version"><span class="">Transaction Amount: <span class="hp-version-amount">${this.state.shoppingcart.total}</span></span><br>Hosted Payments v3.1.0</small></div>
 	            </div>
 	            <div class="hp-col hp-col-right pure-u-1 pure-u-sm-16-24 pure-u-md-16-24 pure-u-lg-3-4">
-	                <div class="hp-content hp-content-cc hp-content-active">
+	                <div show={!this.opts.complete} class="hp-content hp-content-cc hp-content-active">
 	                	<div class="card-wrapper"></div>
 	                	<br>
 	                	<br>
-									<form class="hp-input-wrapper" onsubmit={handleSubmit}>
-										<div class="hp-input hp-input-cc">
-											<input placeholder="Enter Card Number" type="text" name="number">
-										</div>
-										<div class="hp-input hp-input-name">
-											<input placeholder="Enter Full Name" type="text" name="name"/>
-										</div>
-										<div class="hp-input hp-input-cc">
-											<input placeholder="07/26" type="text" name="expiry"/>
-										</div>
-										<div class="hp-input hp-input-third hp-input-cvv hp-input-name">
-											<input placeholder="Enter CVV" type="text" name="cvc"/>
-											<span class="hp-input-cvv-image"></span>
-										</div>
-										<div class="hp-break"></div>
-										<br>
-										<button class="hp-submit" type="submit">Submit Payment</button>
-									</form>
+										<form class="hp-input-wrapper" onsubmit={handleSubmit}>
+											<div class="hp-input hp-input-cc">
+												<input placeholder="Enter Card Number" type="text" name="number">
+											</div>
+											<div class="hp-input hp-input-name">
+												<input placeholder="Enter Full Name" type="text" name="name"/>
+											</div>
+											<div class="hp-input hp-input-cc">
+												<input placeholder="07/26" type="text" name="expiry"/>
+											</div>
+											<div class="hp-input hp-input-third hp-input-cvv hp-input-name">
+												<input placeholder="Enter CVV" type="text" name="cvc"/>
+												<span class="hp-input-cvv-image"></span>
+											</div>
+											<div class="hp-break"></div>
+											<br>
+											<button class="hp-submit" type="submit">Submit Payment</button>
+										</form>
 	                </div>
-<!-- 			                <div class="hp-content hp-content-success">
+									<div show={this.opts.complete} class="hp-content hp-content-success">
 	                    <div class="hp-success-visual"></div>
-	                    <h2>Transaction Complete!</h2>
+	                    <h1>Transaction Complete!</h1>
 	                    <p class="text-muted">You are being redirected...</p>
-	                </div> -->
+	                </div>
 	            </div>
 	        </div>
 	    </div>
@@ -102,7 +104,7 @@
 			vertical-align: middle;
 			padding:10px
 		}
-		.hp .hp-col-left .hp-nav .hp-type.hp-bank a i, .hp .hp-col-left .hp-nav .hp-type.hp-cc a i, .hp .hp-col-left .hp-nav .hp-type.hp-code a i, .hp .hp-col-left .hp-nav .hp-type.hp-emoney a i, .hp .hp-col-left .hp-nav .hp-type.hp-transvault a i, .hp .hp-col-left .hp-secure .hp-secure-icon, .hp .hp-col-right .hp-bank-visual .hp-bank-visual-image, .hp .hp-col-right .hp-content-bank .hp-code-image, .hp .hp-col-right .hp-content-bank .hp-input-cvv-image, .hp .hp-col-right .hp-content-bank.hp-content-card-amex .hp-input-cvv-image, .hp .hp-col-right .hp-content-card-amex .hp-card-visual, .hp .hp-col-right .hp-content-card-discover .hp-card-visual, .hp .hp-col-right .hp-content-card-emoney .hp-card-visual, .hp .hp-col-right .hp-content-card-jcb .hp-card-visual, .hp .hp-col-right .hp-content-card-mastercard .hp-card-visual, .hp .hp-col-right .hp-content-card-visa .hp-card-visual, .hp .hp-col-right .hp-content-cc .hp-code-image, .hp .hp-col-right .hp-content-cc .hp-input-cvv-image, .hp .hp-col-right .hp-content-cc.hp-content-card-amex .hp-input-cvv-image, .hp .hp-col-right .hp-content-code .hp-code-image, .hp .hp-col-right .hp-content-code .hp-input-cvv-image, .hp .hp-col-right .hp-content-code.hp-content-card-amex .hp-input-cvv-image, .hp .hp-col-right .hp-content-emoney .hp-code-image, .hp .hp-col-right .hp-content-emoney .hp-input-cvv-image, .hp .hp-col-right .hp-content-emoney.hp-content-card-amex .hp-input-cvv-image, .hp .hp-col-right .hp-content-transvault .hp-code-image, .hp .hp-col-right .hp-content-transvault .hp-input-cvv-image, .hp .hp-col-right .hp-content-transvault.hp-content-card-amex .hp-input-cvv-image, .hp .hp-col-right .hp-content.hp-content-emoney .hp-emoney-image, .hp .hp-col-right .hp-content.hp-content-emoney .hp-emoney-logo, .hp .hp-col-right .hp-transvault-visual .hp-transvault-visual-image, .hp .hp-col-right .hp-transvault-visual .hp-transvault-visual-image.alt, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-ach, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-amex, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-discover, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-emoney, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-jcb, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-mastercard, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-tv, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-tv.active, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-visa, .hp .hp-splitable.hp-splitable-collapsed>a.hp-splitable-arrow, .hp .hp-splitable>a.hp-splitable-arrow, .hp-form-success .hp-success-visual, .hp-input-overlay .hp-input-close, .hp-input-overlay .wallet.wallet-ach, .hp-input-overlay .wallet.wallet-amex, .hp-input-overlay .wallet.wallet-discover, .hp-input-overlay .wallet.wallet-emoney, .hp-input-overlay .wallet.wallet-jcb, .hp-input-overlay .wallet.wallet-master, .hp-input-overlay .wallet.wallet-visa, .sprites-sprite {
+		.hp .hp-col-left .hp-nav .hp-type.hp-bank a i, .hp .hp-col-left .hp-nav .hp-type.hp-cc a i, .hp .hp-col-left .hp-nav .hp-type.hp-code a i, .hp .hp-col-left .hp-nav .hp-type.hp-emoney a i, .hp .hp-col-left .hp-nav .hp-type.hp-transvault a i, .hp .hp-col-left .hp-secure .hp-secure-icon, .hp .hp-col-right .hp-bank-visual .hp-bank-visual-image, .hp .hp-col-right .hp-content-bank .hp-code-image, .hp .hp-col-right .hp-content-bank .hp-input-cvv-image, .hp .hp-col-right .hp-content-bank.hp-content-card-amex .hp-input-cvv-image, .hp .hp-col-right .hp-content-card-amex .hp-card-visual, .hp .hp-col-right .hp-content-card-discover .hp-card-visual, .hp .hp-col-right .hp-content-card-emoney .hp-card-visual, .hp .hp-col-right .hp-content-card-jcb .hp-card-visual, .hp .hp-col-right .hp-content-card-mastercard .hp-card-visual, .hp .hp-col-right .hp-content-card-visa .hp-card-visual, .hp .hp-col-right .hp-content-cc .hp-code-image, .hp .hp-col-right .hp-content-cc .hp-input-cvv-image, .hp .hp-col-right .hp-content-cc.hp-content-card-amex .hp-input-cvv-image, .hp .hp-col-right .hp-content-code .hp-code-image, .hp .hp-col-right .hp-content-code .hp-input-cvv-image, .hp .hp-col-right .hp-content-code.hp-content-card-amex .hp-input-cvv-image, .hp .hp-col-right .hp-content-emoney .hp-code-image, .hp .hp-col-right .hp-content-emoney .hp-input-cvv-image, .hp .hp-col-right .hp-content-emoney.hp-content-card-amex .hp-input-cvv-image, .hp .hp-col-right .hp-content-transvault .hp-code-image, .hp .hp-col-right .hp-content-transvault .hp-input-cvv-image, .hp .hp-col-right .hp-content-transvault.hp-content-card-amex .hp-input-cvv-image, .hp .hp-col-right .hp-content.hp-content-emoney .hp-emoney-image, .hp .hp-col-right .hp-content.hp-content-emoney .hp-emoney-logo, .hp .hp-col-right .hp-transvault-visual .hp-transvault-visual-image, .hp .hp-col-right .hp-transvault-visual .hp-transvault-visual-image.alt, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-ach, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-amex, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-discover, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-emoney, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-jcb, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-mastercard, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-tv, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-tv.active, .hp .hp-splitable .hp-splitable-item .hp-splitable-cardtype.hp-splitable-cardtype-visa, .hp .hp-splitable.hp-splitable-collapsed>a.hp-splitable-arrow, .hp .hp-splitable>a.hp-splitable-arrow, .hp-success-visual, .hp-input-overlay .hp-input-close, .hp-input-overlay .wallet.wallet-ach, .hp-input-overlay .wallet.wallet-amex, .hp-input-overlay .wallet.wallet-discover, .hp-input-overlay .wallet.wallet-emoney, .hp-input-overlay .wallet.wallet-jcb, .hp-input-overlay .wallet.wallet-master, .hp-input-overlay .wallet.wallet-visa, .sprites-sprite {
 			background-image: url('../../../src/images/hp.png');
 			background-repeat: no-repeat;
 		}
@@ -138,28 +140,58 @@
 			position: relative;
 			border: 1px solid #f3f3f3;
 		}
-
+		@-moz-keyframes hp-loading {
+		  0% {
+		    transform: scale(0);
+		  }
+		  100% {
+		    transform: scale(1);
+		  }
+		}
+		@-webkit-keyframes hp-loading {
+		  0% {
+		    transform: scale(0);
+		  }
+		  100% {
+		    transform: scale(1);
+		  }
+		}
+		@keyframes hp-loading {
+		  0% {
+		    transform: scale(0);
+		  }
+		  100% {
+		    transform: scale(1);
+		  }
+		}
 		.hp .hp-loading-container {
 			box-shadow: inset 1px 1px 0 #f3f3f3,inset -1px -1px 0 #f3f3f3;
 			position: absolute;
-			display: none;
 			z-index: 10;
+			left: 0;
+	    right: 0;
+	    top: 0;
+	    bottom: 0;
+	    background-color: rgba(238, 238, 238, 0.64);
 		}
 
 		.hp .hp-loading-container .hp-loading-text {
 			position: absolute;
 			top: 50%;
-			left: 50%;
 			text-align: center;
 			text-transform: uppercase;
 			color: #007aff;
+			left: 0;
+    	right: 0;
 		}
 
 		.hp .hp-loading-container .hp-loading {
-			position: absolute;
-			line-height: 40px;
-			top: 50%;
-			left: 50%;
+	    position: absolute;
+	    line-height: 40px;
+	    top: 50%;    
+	    left: 0;
+    	right: 0;
+	    margin-top: -35px;
 		}
 
 		.hp .hp-loading-container .hp-loading span {
@@ -175,7 +207,7 @@
 			-webkit-animation: hp-loading .4s infinite alternate;
 			animation: hp-loading .4s infinite alternate;			
 		}
-
+	
 		.hp .hp-loading-container .hp-loading span:nth-of-type(2) {
 			background: #db4437;
 			-moz-animation-delay: .2s;
@@ -286,7 +318,15 @@
 			padding: 0;
 			display: block;			
 		}
-
+		.hp-success-visual {
+		  background-position: 0 -3110px;
+		  font: 0/0 serif;
+		  text-shadow: none;
+		  color: transparent;
+		  height: 128px;
+		  width: 128px;
+		  margin: 85px auto 30px;
+		}
 
 		.hp .hp-col-right .hp-content {
 			-moz-box-sizing: border-box;
@@ -296,6 +336,16 @@
 			margin: 0 auto;
 			padding: 22px 13px;
 			min-height: 485px;			
+		}
+		.hp .hp-col-right .hp-content.hp-content-success {
+
+			padding-top:100px;
+		}
+		.hp .hp-col-right .hp-content.hp-content-success .hp-success-visual{
+			margin: 0 auto;
+		}
+		.hp .hp-col-right .hp-content.hp-content-success h1{
+			font-size: 28px
 		}
 		.hp .hp-col-right .hp-card-visual{
 			-moz-box-sizing: border-box;

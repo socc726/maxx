@@ -7,8 +7,8 @@
 
 	<component-shipping hide={this.state.hosted.sameAs}>
 	</component-shipping>
-
-	<component-hp customer={this.state.customer} handlesubmit={handleSubmit}>
+	
+	<component-hp complete={this.state.hosted.transactionComplete} loading={this.state.isLoading} customer={this.state.customer} handlesubmit={handleSubmit}>
 	</component-hp>
 
 	<script>
